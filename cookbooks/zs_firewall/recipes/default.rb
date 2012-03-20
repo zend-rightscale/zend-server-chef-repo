@@ -2,7 +2,7 @@
 # Cookbook Name:: zs_firewall
 # Recipe:: default
 #
-# Copyright 2012, YOUR_COMPANY_NAME
+# Copyright 2012, Zend Technologies 
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -16,7 +16,7 @@ if node[:sys_firewall][:enabled] == "enabled"
           include_recipe "iptables"
           sys_firewall "10081" # SSH
           sys_firewall "10082" # HTTP
-
+end
 #  vhosts(node[:lb][:vhost_names]).each do | vhost_name |
 #    sys_firewall "Open this appserver's ports to all loadbalancers" do
 #        machine_tag "loadbalancer:#{vhost_name}=lb"
