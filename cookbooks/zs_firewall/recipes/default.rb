@@ -9,9 +9,9 @@
 log "Opening firewal ports for Zend Server"
 rs_utils_marker :begin
 
-class Chef::Recipe
-  include RightScale::App::Helper
-  end
+#class Chef::Recipe
+#  include RightScale::App::Helper
+#  end
 if node[:sys_firewall][:enabled] == "enabled"
           include_recipe "iptables"
           sys_firewall "10081" # ZS gui HTTP
