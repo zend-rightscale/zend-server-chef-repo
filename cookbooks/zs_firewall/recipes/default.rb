@@ -17,6 +17,10 @@ if node[:sys_firewall][:enabled] == "enabled"
           sys_firewall "10081" # ZS gui HTTP
           sys_firewall "10082" # ZS gui HTTPS
 end
+r=rs_utils_server_collection 'app_servers' do
+   action :nothing
+end
+log "The app servers are #{r}"
 #  vhosts(node[:lb][:vhost_names]).each do | vhost_name |
 #    sys_firewall "Open this appserver's ports to all loadbalancers" do
 #        machine_tag "loadbalancer:#{vhost_name}=lb"
