@@ -30,8 +30,7 @@ File::open( '/tmp/data-nodes.txt', 'w' ) do |f|
   end 
 end
 File::open( '/tmp/data-servcol.txt', 'w' ) do |f|
-  f = r.each do |key,value|
-      "key #{p key} \n value #{p value}"
+     f<< p r
   end 
 end
 
