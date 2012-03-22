@@ -7,3 +7,4 @@ version          "0.0.1"
 
 recipe "zs_firewall::default","Basic configuration of ZS firewall"
 depends "sys_firewall"
+depends "rs_utils"
