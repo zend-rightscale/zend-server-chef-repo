@@ -30,7 +30,7 @@ File::open( '/tmp/data-nodes.txt', 'w' ) do |f|
   end 
 end
 File::open( '/tmp/data-servcol.txt', 'w' ) do |f|
-     f<< p r
+     f <<  r
   end 
 end
 
