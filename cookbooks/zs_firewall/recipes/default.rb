@@ -22,9 +22,19 @@ r=rs_utils_server_collection 'app_servers' do
    action :nothing
 end
 log "trying to print the servers"
-#fl= "The r " + p r + "the methods" +  p r::methods
-log "r #{r}"
-log "and p r #{p r}"
+#log "r #{r}"
+#log "and p r #{p r}"
+File::open( '/tmp/data-nodes.txt', 'w' ) do |f|
+  f = node.each do |key,value|
+    "key #{key} \n value #{value}"
+  end 
+end
+File::open( '/tmp/data-servcol.txt', 'w' ) do |f|
+  f = r.each do |key,value|
+      "key #{p key} \n value #{p value}"
+  end 
+end
+
 #  vhosts(node[:lb][:vhost_names]).each do | vhost_name |
 #    sys_firewall "Open this appserver's ports to all loadbalancers" do
 #        machine_tag "loadbalancer:#{vhost_name}=lb"
