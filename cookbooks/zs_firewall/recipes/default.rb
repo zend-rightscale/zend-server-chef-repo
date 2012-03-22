@@ -9,26 +9,37 @@
 log "Opening firewal ports for Zend Server"
 rs_utils_marker :begin
 if node[:sys_firewall][:enabled] == "enabled"
-          include_recipe "iptables"
-          sys_firewall "10081" # ZS gui HTTP
-          sys_firewall "10082" # ZS gui HTTPS
-  sys_firewall "Open this appserver to  port 10060 to all Zend Servers" do
+  include_recipe "iptables"
+  sys_firewall "10081" # ZS gui HTTP
+  sys_firewall "10082" # ZS gui HTTPS
+app_server_rules = {10060=>tcp, 10063=>tcp, 10070 => udp} #10060,10063,10070 are ports for Zend session clustering
+app_server_rules.each do |app_port,port_proto|
+ sys_firewall "Open this appserver to  port #{app_port} to all Zend Servers" do
     machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
-    port 10060
+    port app_port
+    protocol port_proto
     enable true
     action :update
   end
-  sys_firewall "Open this appserver's ports to all Zend Servers" do
-    machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
-    port 10063
-    enable true
-    action :update
-  end
-  sys_firewall "Open this appserver's ports to all Zend Servers" do
-    machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
-    port 10070
-    enable true
-    action :update
-  end
+end
+
+#  sys_firewall "Open this appserver to  port 10060 to all Zend Servers" do
+#    machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
+#    port 10060
+#    enable true
+#    action :update
+#  end
+#  sys_firewall "Open this appserver's ports to all Zend Servers" do
+#    machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
+#    port 10063
+#    enable true
+#    action :update
+#  end
+#  sys_firewall "Open this appserver's ports to all Zend Servers" do
+#    machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
+#    port 10070
+#    enable true
+#    action :update
+#  end
 end
 rs_utils_marker :end
