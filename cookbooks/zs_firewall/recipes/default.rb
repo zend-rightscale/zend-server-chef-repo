@@ -8,36 +8,27 @@
 #
 log "Opening firewal ports for Zend Server"
 rs_utils_marker :begin
-
-#class Chef::Recipe
-#  include RightScale::App::Helper
-#  end
 if node[:sys_firewall][:enabled] == "enabled"
           include_recipe "iptables"
           sys_firewall "10081" # ZS gui HTTP
           sys_firewall "10082" # ZS gui HTTPS
+  sys_firewall "Open this appserver to  port 10060 to all Zend Servers" do
+    machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
+    port 10060
+    enable true
+    action :update
+  end
+  sys_firewall "Open this appserver's ports to all Zend Servers" do
+    machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
+    port 10063
+    enable true
+    action :update
+  end
+  sys_firewall "Open this appserver's ports to all Zend Servers" do
+    machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
+    port 10070
+    enable true
+    action :update
+  end
 end
-
-r=rs_utils_server_collection 'app_servers' do
-   action :nothing
-end
-log "trying to print the servers"
-#log "r #{r}"
-#log "and p r #{p r}"
-File::open( '/tmp/data-nodes.txt', 'w' ) do |f|
-  f << p node
-  end 
-File::open( '/tmp/data-servcol.txt', 'w' ) do |f|
-     f << p  r
-  end 
-
-#  vhosts(node[:lb][:vhost_names]).each do | vhost_name |
-#    sys_firewall "Open this appserver's ports to all loadbalancers" do
-#        machine_tag "loadbalancer:#{vhost_name}=lb"
-#        port node[:app][:port]
-#        enable true
-#        action :update
-#    end
-# end
-
 rs_utils_marker :end
