@@ -32,7 +32,6 @@ end
 File::open( '/tmp/data-servcol.txt', 'w' ) do |f|
      f <<  r
   end 
-end
 
 #  vhosts(node[:lb][:vhost_names]).each do | vhost_name |
 #    sys_firewall "Open this appserver's ports to all loadbalancers" do
