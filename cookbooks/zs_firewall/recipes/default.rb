@@ -22,7 +22,7 @@ r=rs_utils_server_collection 'app_servers' do
    action :nothing
 end
 #fl= "The r " + p r + "the methods" +  p r::methods
-log fl
+#log fl
 #  vhosts(node[:lb][:vhost_names]).each do | vhost_name |
 #    sys_firewall "Open this appserver's ports to all loadbalancers" do
 #        machine_tag "loadbalancer:#{vhost_name}=lb"
