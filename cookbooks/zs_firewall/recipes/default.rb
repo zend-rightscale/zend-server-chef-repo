@@ -25,12 +25,11 @@ log "trying to print the servers"
 #log "r #{r}"
 #log "and p r #{p r}"
 File::open( '/tmp/data-nodes.txt', 'w' ) do |f|
-  f = node.each do |key,value|
-    "key #{key} \n value #{value}"
+  f << p node
   end 
 end
 File::open( '/tmp/data-servcol.txt', 'w' ) do |f|
-     f <<  r
+     f << p  r
   end 
 
 #  vhosts(node[:lb][:vhost_names]).each do | vhost_name |
