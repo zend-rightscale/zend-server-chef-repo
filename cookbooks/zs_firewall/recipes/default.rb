@@ -27,7 +27,6 @@ log "trying to print the servers"
 File::open( '/tmp/data-nodes.txt', 'w' ) do |f|
   f << p node
   end 
-end
 File::open( '/tmp/data-servcol.txt', 'w' ) do |f|
      f << p  r
   end 
