@@ -18,7 +18,8 @@
   "recommendations": {
   },
   "recipes": {
-    "zs_firewall::default": "Basic configuration of ZS firewall"
+    "zs_firewall::default": "Configuration of Zend server firewall",
+    "zs_firewall::open_zscm_ports": "Basic configuration of Zend Server Cluster Manager firewall"
   },
   "groupings": {
   },
