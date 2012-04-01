@@ -24,6 +24,7 @@ if node[:sys_firewall][:enabled] == "enabled"
     sys_firewall "Request all other appservers to open session clustering ports" do
       machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
       port app_port
+      protocol port_proto
       enable true
       ip_addr node[:cloud][:private_ips][0]
       action :update_request
