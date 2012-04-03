@@ -16,7 +16,7 @@ if node[:sys_firewall][:enabled] == "enabled"
       machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
       port app_port
       protocol port_proto
-      enable true
+      enable false 
       ip_addr node[:cloud][:private_ips][0]
       action :update_request
     end
