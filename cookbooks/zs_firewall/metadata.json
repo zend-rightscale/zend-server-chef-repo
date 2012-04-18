@@ -14,10 +14,11 @@
   },
   "maintainer": "Amir Friedman",
   "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "recommendations": {
   },
   "recipes": {
+    "zs_firewall::open_sc_broadcast_port": "open 10070 udp port as a workaround",
     "zs_firewall::close_zs_ports": "closing the other Zend servers firewall for the server",
     "zs_firewall::open_zs_ports": "Configuration of Zend server firewall",
     "zs_firewall::open_zscm_ports": "Basic configuration of Zend Server Cluster Manager firewall"
