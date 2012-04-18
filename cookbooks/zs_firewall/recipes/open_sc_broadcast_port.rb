@@ -11,7 +11,7 @@ rs_utils_marker :begin
     sys_firewall "Request all other appservers to open session clustering ports" do
       machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
       port 10070
-      protocol udp
+      protocol 'udp'
       enable true
       ip_addr node[:cloud][:private_ips][0]
       action :update_request
