@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: zs_firewall
-# Recipe:: default
+# Recipe:: close_zs_ports
 #
 # Copyright 2012, Zend Technologies 
 #

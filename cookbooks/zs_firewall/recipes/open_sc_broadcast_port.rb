@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: zs_firewall
-# Recipe:: default
+# Recipe::open_sc_broadcast_port
 #
 # Copyright 2012, Zend Technologies 
 #
