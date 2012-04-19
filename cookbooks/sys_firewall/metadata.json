@@ -102,7 +102,7 @@
   },
   "replacing": {
   },
-  "description": "Installs/Configures firewall",
+  "description": "Installs/Configures firewall with Zend patch",
   "providing": {
   }
 }
