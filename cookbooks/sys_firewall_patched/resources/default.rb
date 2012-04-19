@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sys_firewall
+# Cookbook Name:: sys_firewall_patched
 #
 # Copyright RightScale, Inc. All rights reserved.  All access and use subject to the
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
@@ -13,7 +13,7 @@ attribute :enable, :equal_to => [ true, false ], :default => true
 
 attribute :ip_addr, :kind_of => String, :default => "any"
 attribute :machine_tag, :kind_of => String, :regex => /^([^:]+):(.+)=.+/
-attribute :collection, :kind_of => String, :default => "sys_firewall"
+attribute :collection, :kind_of => String, :default => "sys_firewall_patched"
 
 # Defines a default action
 def initialize(*args)

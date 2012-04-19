@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sys_firewall
+# Cookbook Name:: sys_firewall_patched
 #
 # Copyright RightScale, Inc. All rights reserved.  All access and use subject to the
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
@@ -9,16 +9,16 @@ rs_utils_marker :begin
 
 # convert inputs into parameters usable by the firewall_rule definition
 # TODO add support for 'any' and port ranges '80,8000,3000-4000'
-rule_port = node[:sys_firewall][:rule][:port].to_i
-raise "Invalid port specified: #{node[:sys_firewall][:rule][:port]}.  Valid range 1-65536" unless rule_port > 0 and rule_port <= 65536
-rule_ip = node[:sys_firewall][:rule][:ip_address]
+rule_port = node[:sys_firewall_patched][:rule][:port].to_i
+raise "Invalid port specified: #{node[:sys_firewall_patched][:rule][:port]}.  Valid range 1-65536" unless rule_port > 0 and rule_port <= 65536
+rule_ip = node[:sys_firewall_patched][:rule][:ip_address]
 rule_ip = (rule_ip == "" || rule_ip.downcase =~ /any/ ) ? nil : rule_ip 
-rule_protocol = node[:sys_firewall][:rule][:protocol]
-to_enable = (node[:sys_firewall][:rule][:enable] == "enable") ? true : false
+rule_protocol = node[:sys_firewall_patched][:rule][:protocol]
+to_enable = (node[:sys_firewall_patched][:rule][:enable] == "enable") ? true : false
 
-if node[:sys_firewall][:enabled] == "enabled"
+if node[:sys_firewall_patched][:enabled] == "enabled"
 
-  sys_firewall rule_port do
+  sys_firewall_patched rule_port do
     ip_addr rule_ip
     protocol rule_protocol
     enable to_enable

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sys_firewall
+# Cookbook Name:: sys_firewall_patched
 #
 # Copyright RightScale, Inc. All rights reserved.  All access and use subject to the
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
@@ -32,7 +32,7 @@ action :update do
   log msg
 
   # Update rules 
-  unless node[:sys_firewall][:enabled] == "enabled" 
+  unless node[:sys_firewall_patched][:enabled] == "enabled" 
     log "Firewall not enabled. Not adding rule for #{port}."
   else
     
@@ -77,7 +77,7 @@ action :update do
           RightScale::System::Helper.run_template(
                 "/etc/iptables.d/#{rule}",    # target_file
                 "iptables_port.erb",          # source
-                "sys_firewall",               # cookbook
+                "sys_firewall_patched",               # cookbook
                 {                             # variables
                   :port => port,
                   :protocol => protocol,
@@ -117,15 +117,15 @@ action :update_request do
   log msg
   
   # Setup attributes
-  attrs = {:sys_firewall => {:rule => Hash.new}}
-  attrs[:sys_firewall][:rule][:port] = port
-  attrs[:sys_firewall][:rule][:protocol] = protocol
-  attrs[:sys_firewall][:rule][:enable] = (to_enable == true) ? "enable" : "disable"
-  attrs[:sys_firewall][:rule][:ip_address] = ip_addr
+  attrs = {:sys_firewall_patched => {:rule => Hash.new}}
+  attrs[:sys_firewall_patched][:rule][:port] = port
+  attrs[:sys_firewall_patched][:rule][:protocol] = protocol
+  attrs[:sys_firewall_patched][:rule][:enable] = (to_enable == true) ? "enable" : "disable"
+  attrs[:sys_firewall_patched][:rule][:ip_address] = ip_addr
   
   # Use RightNet to update firewall rules on all tagged servers
   remote_recipe "Request firewall update" do
-    recipe "sys_firewall::setup_rule"
+    recipe "sys_firewall_patched::setup_rule"
     recipients_tags tag
     attributes attrs
   end 

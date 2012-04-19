@@ -4,24 +4,10 @@
     "iptables": ">= 0.0.0",
     "rs_utils": ">= 0.0.0"
   },
-  "name": "sys_firewall",
+  "name": "sys_firewall_patched",
   "maintainer_email": "support@rightscale.com",
   "attributes": {
-    "sys_firewall/rule/ip_address": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "any",
-      "type": "string",
-      "recipes": [
-        "sys_firewall::setup_rule"
-      ],
-      "display_name": "Firewall Rule IP Address",
-      "description": "Address can either be a network name, a network IP address (with /mask), or a plain IP address.  The mask can either be a network mask or a plain number specifying the number of 1's at the left side of the network mask.  Thus, a mask of 24 is equivalent to 255.255.255.0.  A '!' argument before the address specification inverts the sense of the address.  A value of 'any' allows any IP address (default)."
-    },
-    "sys_firewall/rule/protocol": {
+    "sys_firewall_patched_patched/rule/protocol": {
       "required": "optional",
       "calculated": false,
       "choice": [
@@ -32,12 +18,12 @@
       "default": "tcp",
       "type": "string",
       "recipes": [
-        "sys_firewall::setup_rule"
+        "sys_firewall_patched_patched::setup_rule"
       ],
       "display_name": "Firewall Rule Protocol",
       "description": "Firewall protocol use. Defaults to 'tcp'."
     },
-    "sys_firewall/rule/enable": {
+    "sys_firewall_patched_patched/rule/enable": {
       "required": "optional",
       "calculated": false,
       "choice": [
@@ -47,12 +33,26 @@
       "default": "enable",
       "type": "string",
       "recipes": [
-        "sys_firewall::setup_rule"
+        "sys_firewall_patched_patched::setup_rule"
       ],
       "display_name": "Firewall Rule",
       "description": "Enables or disables a firewall rule."
     },
-    "sys_firewall/rule/port": {
+    "sys_firewall_patched_patched/rule/ip_address": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "any",
+      "type": "string",
+      "recipes": [
+        "sys_firewall_patched_patched::setup_rule"
+      ],
+      "display_name": "Firewall Rule IP Address",
+      "description": "Address can either be a network name, a network IP address (with /mask), or a plain IP address.  The mask can either be a network mask or a plain number specifying the number of 1's at the left side of the network mask.  Thus, a mask of 24 is equivalent to 255.255.255.0.  A '!' argument before the address specification inverts the sense of the address.  A value of 'any' allows any IP address (default)."
+    },
+    "sys_firewall_patched_patched/rule/port": {
       "required": "required",
       "calculated": false,
       "choice": [
@@ -60,12 +60,12 @@
       ],
       "type": "string",
       "recipes": [
-        "sys_firewall::setup_rule"
+        "sys_firewall_patched_patched::setup_rule"
       ],
       "display_name": "Firewall Rule Port",
       "description": "Firewall port to Enable or Disable. (Ex. 8000)"
     },
-    "sys_firewall/enabled": {
+    "sys_firewall_patched_patched/enabled": {
       "required": "optional",
       "calculated": false,
       "choice": [
@@ -75,10 +75,10 @@
       "default": "enabled",
       "type": "string",
       "recipes": [
-        "sys_firewall::default"
+        "sys_firewall_patched_patched::default"
       ],
       "display_name": "Firewall",
-      "description": "Enables an iptables firewall for this server which allows port 22, 80 and 443 open by default.  Use the sys_firewall::setup_rule recipe to enable/disable extra ports."
+      "description": "Enables an iptables firewall for this server which allows port 22, 80 and 443 open by default.  Use the sys_firewall_patched_patched::setup_rule recipe to enable/disable extra ports."
     }
   },
   "license": "Copyright RightScale, Inc. All rights reserved.  All access and use subject to the RightScale Terms of Service available at http://www.rightscale.com/terms.php and, if applicable, other agreements such as a RightScale Master Subscription Agreement.\n",
@@ -92,9 +92,9 @@
   "recommendations": {
   },
   "recipes": {
-    "sys_firewall::default": "Use in conjunction with the 'Firewall' input to enable or disable iptables.",
-    "sys_firewall::do_list_rules": "List the firewall rules.",
-    "sys_firewall::setup_rule": "Use for enabling/disabling specific firewall ports."
+    "sys_firewall_patched_patched::setup_rule": "Use for enabling/disabling specific firewall ports.",
+    "sys_firewall_patched_patched::default": "Use in conjunction with the 'Firewall' input to enable or disable iptables.",
+    "sys_firewall_patched_patched::do_list_rules": "List the firewall rules."
   },
   "groupings": {
   },

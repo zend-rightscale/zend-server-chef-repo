@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sys_firewall
+# Cookbook Name:: sys_firewall_patched
 #
 # Copyright RightScale, Inc. All rights reserved.  All access and use subject to the
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
@@ -7,7 +7,7 @@
 
 rs_utils_marker :begin
 
-if node[:sys_firewall][:enabled] == "enabled"
+if node[:sys_firewall_patched][:enabled] == "enabled"
 #
 # List the contents of /etc/iptables.d
 #

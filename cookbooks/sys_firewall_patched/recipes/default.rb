@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sys_firewall
+# Cookbook Name:: sys_firewall_patched
 #
 # Copyright RightScale, Inc. All rights reserved.  All access and use subject to the
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
@@ -7,16 +7,16 @@
 
 rs_utils_marker :begin
 
-if node[:sys_firewall][:enabled] == "enabled"
+if node[:sys_firewall_patched][:enabled] == "enabled"
   include_recipe "iptables"
-  sys_firewall "22" # SSH
-  sys_firewall "80" # HTTP
-  sys_firewall "443" # HTTPS
+  sys_firewall_patched "22" # SSH
+  sys_firewall_patched "80" # HTTP
+  sys_firewall_patched "443" # HTTPS
   
   if node[:cloud][:provider] == "softlayer"
     # Open ports for SoftLayer montoring agent
     (48000..48020).each do |port|
-      sys_firewall port do
+      sys_firewall_patched port do
         ip_addr "10.0.0.0" # Net mask to open to all addresses on the interal 10.*.*.* 
       end
     end
