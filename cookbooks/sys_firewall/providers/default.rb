@@ -102,7 +102,7 @@ action :update_request do
 
   # Deal with attributes
   port = new_resource.port ? new_resource.port : new_resource.name
-  protocol = new_resource.protocol ? new_resource.protocol : "tcp"
+  protocol = new_resource.protocol 
   to_enable = new_resource.enable
   ip_addr = new_resource.ip_addr
   raise "ERROR: client_ip must be specified." unless ip_addr
@@ -111,7 +111,7 @@ action :update_request do
 
   # Tell user what is going on
   msg = "Requesting port #{port} be #{to_enable ? "opened" : "closed"}"
-  msg << " With protocol #{protocol}"
+  msg << " using protocol #{protocol}." if protocol
   msg << " only for #{ip_addr}." if ip_addr
   msg << " on servers with tag: #{tag}."
   log msg
@@ -129,6 +129,6 @@ action :update_request do
     recipients_tags tag
     attributes attrs
   end 
-
+/
 end
 
