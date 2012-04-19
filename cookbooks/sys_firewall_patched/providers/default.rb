@@ -129,6 +129,5 @@ action :update_request do
     recipients_tags tag
     attributes attrs
   end 
-/
 end
 
