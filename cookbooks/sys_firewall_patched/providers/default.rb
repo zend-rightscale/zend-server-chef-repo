@@ -117,15 +117,15 @@ action :update_request do
   log msg
   
   # Setup attributes
-  attrs = {:sys_firewall_patched => {:rule => Hash.new}}
-  attrs[:sys_firewall_patched][:rule][:port] = port
-  attrs[:sys_firewall_patched][:rule][:protocol] = protocol
-  attrs[:sys_firewall_patched][:rule][:enable] = (to_enable == true) ? "enable" : "disable"
-  attrs[:sys_firewall_patched][:rule][:ip_address] = ip_addr
+  attrs = {:sys_firewall => {:rule => Hash.new}}
+  attrs[:sys_firewall][:rule][:port] = port
+  attrs[:sys_firewall][:rule][:protocol] = protocol
+  attrs[:sys_firewall][:rule][:enable] = (to_enable == true) ? "enable" : "disable"
+  attrs[:sys_firewall][:rule][:ip_address] = ip_addr
   
   # Use RightNet to update firewall rules on all tagged servers
   remote_recipe "Request firewall update" do
-    recipe "sys_firewall_patched::setup_rule"
+    recipe "sys_firewall::setup_rule"
     recipients_tags tag
     attributes attrs
   end 
