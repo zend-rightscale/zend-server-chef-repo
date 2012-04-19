@@ -25,9 +25,9 @@ action :update do
   raise "ERROR: ip_addr param cannot be used with machine_tag param." if tag && ip_addr
 
   # Tell user what is going on
-  msg = "#{to_enable ? "Enabling" : "Disabling"} firewall rule for port #{port}"
+  msg = "#{to_enable ? "Enabling" : "Disabling"} firewall rule on local server for port #{port}"
   msg << " only for address #{ip_addr}" if ip_addr
-  msg << " on servers with tag #{tag}" if tag
+  msg << " for servers with tag #{tag}" if tag
   msg << " using protocol #{protocol}." if protocol
   log msg
 
@@ -102,7 +102,7 @@ action :update_request do
 
   # Deal with attributes
   port = new_resource.port ? new_resource.port : new_resource.name
-  protocol = new_resource.protocol 
+  protocol = new_resource.protocol ? new_resource.protocol : "tcp" 
   to_enable = new_resource.enable
   ip_addr = new_resource.ip_addr
   raise "ERROR: client_ip must be specified." unless ip_addr
