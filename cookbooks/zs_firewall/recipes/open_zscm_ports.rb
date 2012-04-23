@@ -8,7 +8,7 @@
 #
 log "Opening firewal ports for Zend Server cluster manager"
 rs_utils_marker :begin
-if node[:sys_firewall_patched][:enabled] == "enabled"
+if node[:sys_firewall][:enabled] == "enabled"
   include_recipe "iptables"
   sys_firewall_patched "10081" # ZS gui HTTP
   sys_firewall_patched "10082" # ZS gui HTTPS
