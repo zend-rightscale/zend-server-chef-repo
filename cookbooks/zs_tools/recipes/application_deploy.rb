@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-repo "get zpk file from general cloud storage" do 
+repo_ros "get zpk file from general cloud storage" do 
       destination "/tmp/apps"
       action      ":pull"
 end
