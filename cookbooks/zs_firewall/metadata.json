@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "sys_firewall_patched": ">= 0.0.0",
+    "sys_firewall": ">= 0.0.0",
     "rs_utils": ">= 0.0.0"
   },
   "name": "zs_firewall",
@@ -18,7 +18,6 @@
   "recommendations": {
   },
   "recipes": {
-    "zs_firewall::open_sc_broadcast_port": "open 10070 udp port as a workaround",
     "zs_firewall::close_zs_ports": "closing the other Zend servers firewall for the server",
     "zs_firewall::open_zs_ports": "Configuration of Zend server firewall",
     "zs_firewall::open_zscm_ports": "Basic configuration of Zend Server Cluster Manager firewall"
