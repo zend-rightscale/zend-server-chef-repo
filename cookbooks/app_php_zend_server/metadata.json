@@ -22,7 +22,7 @@
   "recommendations": {
   },
   "recipes": {
-    "app_php::default": "Installs the php application server."
+    "app_php_zend_server::default": "Installs the Zend server php application server."
   },
   "groupings": {
   },
