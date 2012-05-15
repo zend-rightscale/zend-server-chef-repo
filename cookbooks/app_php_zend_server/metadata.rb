@@ -8,7 +8,6 @@ version          "0.0.1"
 depends "app"
 depends "web_apache"
 depends "db_mysql"
-depends "db_postgres"
 depends "repo"
 depends "rs_utils"
  
