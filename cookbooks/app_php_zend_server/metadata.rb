@@ -12,4 +12,4 @@ depends "db_postgres"
 depends "repo"
 depends "rs_utils"
  
-recipe "app_php::default", "Installs the php application server."
+recipe "app_php_zend_server::default", "Installs the Zend server php application server."
