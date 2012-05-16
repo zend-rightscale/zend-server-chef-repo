@@ -1,0 +1,5 @@
+#
+# Cookbook name:: app_php
+#
+#Optional attributes:
+set_unless[:zend][:server][:repofile] = ""
