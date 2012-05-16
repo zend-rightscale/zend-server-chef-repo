@@ -33,7 +33,13 @@ action :restart do
 end
 
 
-action :install do
+  action :install do
+    execute "curl -s http://repos.zend.com/zend.key | apt-key add -" do
+    action :nothing
+  end
+  execute "apt-get update" do
+    action :nothing
+  end
   # Install user-specified Packages and Modules
   packages = new_resource.packages
   log "Packages which will be installed #{packages}"
