@@ -39,7 +39,10 @@ end
   log "Packages which will be installed #{packages}"
 
   packages.each do |p|
-    package p
+    package p do
+    #version $Version-$Release
+    action :install
+    end
   end
 
   node[:php][:modules_list].each do |p|
