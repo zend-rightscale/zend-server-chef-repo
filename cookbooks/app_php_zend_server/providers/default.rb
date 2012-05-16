@@ -40,7 +40,7 @@ end
 
   packages.each do |p|
     package p do
-    #version $Version-$Release
+    version "5.6.0-341" 
     action :install
     end
   end
