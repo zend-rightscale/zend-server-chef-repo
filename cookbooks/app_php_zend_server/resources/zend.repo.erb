@@ -1,13 +1,13 @@
 [Zend]
 name=Zend Server
-baseurl=<%= node[:zend][:server][:repo_baseurl]%><%= node[:zend][:server][:repo_suffix]%>/rpm/$basearch
+baseurl=<%= node[:app][:zend_server_repo_url] %>/rpm/$basearch
 enabled=1
 gpgcheck=1
 gpgkey=http://repos.zend.com/zend.key
 
 [Zend_noarch]
 name=Zend Server - noarch
-baseurl=<%= node[:zend][:server][:repo_baseurl]%><%= node[:zend][:server][:repo_suffix]%>/rpm/noarch
+baseurl=<%= node[:app][:zend_server_repo_url] %>/rpm/noarch
 enabled=1
 gpgcheck=1
 gpgkey=http://repos.zend.com/zend.key
