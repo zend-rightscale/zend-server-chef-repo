@@ -9,7 +9,7 @@ rs_utils_marker :begin
 
 log " Setting provider specific settings for Zend server php application server."
 case node[:platform]
-node[:app][:zend_server_version] == "5.6"
+node[:app][:zend_server_version] = "5.6"
 node[:app][:zend_server_php_version]="5.3"
 node[:app][:provider] = "app_php_zend_server"
 node[:app][:destination]="#{node[:web_apache][:docroot]}"
