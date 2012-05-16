@@ -12,7 +12,7 @@ case node[:platform]
 when "ubuntu", "debian"
   node[:zend][:server][:repofile] = "/etc/apt/sources.list.d/zend.list"
 when "centos", "redhat"
-  node[:zend][:server][:repofile] = "/etc/yum.repos.d/zend.repo"
+  node[:app][:zend_server_repofile] = "/etc/yum.repos.d/zend.repo"
 else
   raise "Unrecognized distro #{node[:platform]}, exiting "
 end
