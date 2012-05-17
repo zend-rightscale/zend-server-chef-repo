@@ -10,6 +10,5 @@ depends "web_apache"
 depends "db_mysql"
 depends "repo"
 depends "rs_utils"
-depends "yum_repository"
 
 recipe "app_php_zend_server::default", "Installs the Zend server php application server."
