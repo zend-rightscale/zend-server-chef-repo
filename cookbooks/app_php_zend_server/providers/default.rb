@@ -34,14 +34,14 @@ end
 
 
   action :install do
-  yum_repository "zend" do
-    description "Zend Server Repo"
-    key node['repo']['zend']['http://repos.zend.com/zend.key']
-    url node['repo']['zend']['http://repos.zend.com/zend-server/5.6']
-    mirrorlist true
-    action :add
-    enabled 0
-  end
+#  yum_repository "zend" do
+#    description "Zend Server Repo"
+#    key node['repo']['zend']['http://repos.zend.com/zend.key']
+#    url node['repo']['zend']['http://repos.zend.com/zend-server/5.6']
+#    mirrorlist true
+#    action :add
+#    enabled 0
+#  end
   # Install user-specified Packages and Modules
   packages = new_resource.packages
   log "Packages which will be installed #{packages}"
