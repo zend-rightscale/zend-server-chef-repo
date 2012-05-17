@@ -4,6 +4,7 @@
     "db_mysql": ">= 0.0.0",
     "app": ">= 0.0.0",
     "web_apache": ">= 0.0.0",
+    "yum_repository": ">= 0.0.0",
     "rs_utils": ">= 0.0.0"
   },
   "name": "app_php_zend_server",
