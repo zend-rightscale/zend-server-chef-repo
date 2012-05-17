@@ -15,7 +15,7 @@ node[:app][:destination]="#{node[:web_apache][:docroot]}"
 node[:app][:packages] = ["zend-server-php-" + node[:app][:zend_server_php_version]]
 node[:app][:zend_server_repo_baseurl]="http://repos.zend.com/zend-server/"
 node[:app][:zend_server_repo_suffix]="5.6"
-#node[:app][:zend_server_repo_url]=node[:app][:zend_server_repo_baseurl]+node[:app][:zend_server_repo_suffix]
+node[:app][:zend_server_repo_url]=node[:app][:zend_server_repo_baseurl]+node[:app][:zend_server_repo_suffix]
 url=node[:app][:zend_server_repo_baseurl]+node[:app][:zend_server_repo_suffix] 
 case node[:platform]
 when "ubuntu", "debian"
@@ -29,14 +29,6 @@ execute "apt-get update" do
   action :nothing
 end
 when "centos", "redhat"
-yum_repository "zend" do
-  description "Zend Server Repo"
-  key node['repo']['zend']['http://repos.zend.com/zend.key']
-  url node['repo']['zend']['http://repos.zend.com/zend-server/5.6']
-  mirrorlist true
-  action :add
-  enabled 0
-end
 #  template "/etc/yum.repos.d/zend.repo" do
 #    source "zend.repo.erb"
 #  end
