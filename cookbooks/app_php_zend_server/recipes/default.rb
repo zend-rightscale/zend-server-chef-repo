@@ -29,17 +29,17 @@ execute "apt-get update" do
   action :nothing
 end
 when "centos", "redhat"
-  yum_repository "zend" do
-    description "Zend Server Repo"
-    key node['repo']['zend']['http://repos.zend.com/zend.key']
-    url node['repo']['zend']['http://repos.zend.com/zend-server/5.6']
-    mirrorlist true
-    action :add
-    enabled 0
-  end
-#  template "/etc/yum.repos.d/zend.repo" do
-#    source "zend.repo.erb"
+#  yum_repository "zend" do
+#    description "Zend Server Repo"
+#    key node['repo']['zend']['http://repos.zend.com/zend.key']
+#    url node['repo']['zend']['http://repos.zend.com/zend-server/5.6']
+#    mirrorlist true
+#    action :add
+#    enabled 0
 #  end
+  template "/etc/yum.repos.d/zend.repo" do
+    source "zend.repo.erb"
+  end
 else
   raise "Unrecognized distro #{node[:platform]}, exiting "
 end

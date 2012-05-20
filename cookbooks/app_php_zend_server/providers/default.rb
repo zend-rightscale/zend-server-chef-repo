@@ -43,20 +43,23 @@ end
 #    enabled 0
 #  end
   # Install user-specified Packages and Modules
-  packages = new_resource.packages
-  log "Packages which will be installed #{packages}"
+#  packages = new_resource.packages
+#  log "Packages which will be installed #{packages}"
 
-  packages.each do |p|
-    package p do
+#  packages.each do |p|
+#    package p do
 #    version "5.6.0-341" 
-    action :install
-    end
-  end
+#    action :install
+#    end
+#  end
 
-  node[:php][:modules_list].each do |p|
-    package p
-  end
-
+#  node[:php][:modules_list].each do |p|
+#    package p
+#  end
+execute "install zend server" do 
+  command "yum install " +  node[:app][:packages]
+  action :run
+end  
   node[:php][:module_dependencies].each do |mod|
     apache_module mod
   end
