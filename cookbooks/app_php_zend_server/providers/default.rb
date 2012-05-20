@@ -57,7 +57,7 @@ end
 #    package p
 #  end
 execute "install zend server" do 
-  command "yum install #{node[:app][:packages]}"
+  command "yum install -y #{node[:app][:packages]}"
   action :run
 end  
   node[:php][:module_dependencies].each do |mod|
