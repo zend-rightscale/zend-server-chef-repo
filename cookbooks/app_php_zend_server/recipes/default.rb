@@ -29,6 +29,7 @@ execute "apt-get update" do
   action :nothing
 end
 when "centos", "redhat"
+node[:app][:root]="/var/www/html"
 #  yum_repository "zend" do
 #    description "Zend Server Repo"
 #    key node['repo']['zend']['http://repos.zend.com/zend.key']
