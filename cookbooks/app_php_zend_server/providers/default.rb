@@ -53,13 +53,13 @@ end
 #    end
 #  end
 
-#  node[:php][:modules_list].each do |p|
-#    package p
-#  end
-execute "install zend server" do 
-  command "yum install -y #{node[:app][:packages]}"
-  action :run
-end  
+#execute "install zend server" do 
+#  command "yum install -y #{node[:app][:packages]}"
+#  action :run
+#end  
+  node[:php][:modules_list].each do |p|
+    package p
+  end
   node[:php][:module_dependencies].each do |mod|
     apache_module mod
   end
