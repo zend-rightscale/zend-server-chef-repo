@@ -13,11 +13,11 @@ if node[:sys_firewall][:enabled] == "enabled"
   app_server_rules = {10060=>'tcp', 10063=>'tcp', 10070 => 'udp'} #10060,10063,10070 are ports for Zend session clustering
   app_server_rules.each do |app_port,port_proto|
     sys_firewall "Request all other appservers to close session clustering ports" do
-      machine_tag "loadbalancer:app=#{node[:lb][:applistener_name]}"
+      machine_tag "appserver:active=true" 
       port app_port
       protocol port_proto
       enable false 
-      ip_addr node[:cloud][:private_ips][0]
+      ip_addr node[:app][:bind_ip] 
       action :update_request
     end
   end

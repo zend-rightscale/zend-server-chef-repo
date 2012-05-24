@@ -26,7 +26,7 @@ if node[:sys_firewall][:enabled] == "enabled"
       port app_port
       protocol port_proto
       enable true
-      ip_addr node[:cloud][:private_ips][0]
+      ip_addr node[:app][:bind_ip] 
       action :update_request
     end
   end
