@@ -1,10 +1,6 @@
 {
   "dependencies": {
-    "repo": ">= 0.0.0",
-    "db_mysql": ">= 0.0.0",
-    "app": ">= 0.0.0",
-    "web_apache": ">= 0.0.0",
-    "rs_utils": ">= 0.0.0"
+    "app": ">= 0.0.0"
   },
   "name": "app_php_zend_server",
   "maintainer_email": "amir@zend.com",
@@ -21,7 +17,7 @@
   "recommendations": {
   },
   "recipes": {
-    "app_php_zend_server::default": "Installs the Zend server php application server."
+    "app_php_zend_server::default": "remove php packages from packages to install"
   },
   "groupings": {
   },
