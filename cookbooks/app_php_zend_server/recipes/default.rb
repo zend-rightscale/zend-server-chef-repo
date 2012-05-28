@@ -9,6 +9,8 @@ rs_utils_marker :begin
 
 log " Setting provider specific settings for Zend server php application server."
 node[:app][:packages] = Array.new
+node[:php][:module_dependencies] = Array.new
+node[:php][:module_dependencies] = [ "proxy_http"]
 if node[:cloud][:private_ips] && node[:cloud][:private_ips].size > 0
           ip = node[:cloud][:private_ips][0] # default to first private ip
         elsif node[:cloud][:public_ips] && node[:cloud][:public_ips].size > 0
