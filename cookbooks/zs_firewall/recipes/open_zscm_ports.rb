@@ -12,13 +12,13 @@ if node[:sys_firewall][:enabled] == "enabled"
   include_recipe "iptables"
   sys_firewall "10081" # ZS gui HTTP
   sys_firewall "10082" # ZS gui HTTPS
-  sys_firewall 80 do
-    protocol tcp
+  sys_firewall '80' do
+    protocol 'tcp'
     enable false
     action :update
   end
-  sys_firewall 443 do
-    protocol tcp
+  sys_firewall '443' do
+    protocol 'tcp'
     enable false
     action :update
   end
