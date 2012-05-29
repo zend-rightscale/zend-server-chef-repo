@@ -9,7 +9,7 @@ rs_utils_marker :begin
 
 log " Setting provider specific settings for Zend server php application server."
 node[:app][:packages] = Array.new
-case platform
+case node[:platform]
 when "ubuntu", "debian"
   node[:php][:module_dependencies] = Array.new
   node[:php][:module_dependencies] = [ "proxy_http"]
