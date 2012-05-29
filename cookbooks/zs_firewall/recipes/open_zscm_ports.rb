@@ -29,4 +29,5 @@ if node[:sys_firewall][:enabled] == "enabled"
   end
 
 end
+right_link_tag "zscm:active=true"
 rs_utils_marker :end
