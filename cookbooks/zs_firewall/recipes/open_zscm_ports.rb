@@ -20,7 +20,7 @@ if node[:sys_firewall][:enabled] == "enabled"
   sys_firewall "10081" # ZS gui HTTP
   sys_firewall "10082" # ZS gui HTTPS
   zscm_rules = {10081=>'tcp',10082=>'udp'} 
-  app_server_rules.each do |app_port,port_proto|
+  zscm_rules.each do |app_port,port_proto|
     sys_firewall "Request all other appservers to open gui ports to zscm" do
       machine_tag "appserver:active=true"
       port app_port
