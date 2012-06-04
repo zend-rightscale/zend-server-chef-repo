@@ -15,7 +15,7 @@ if node[:sys_firewall][:enabled] == "enabled"
   zscm_rules = {10081=>'tcp',10082=>'udp'} # gui ports for communicating with Zend server cluster manager
   zscm_rules.each do |app_port,port_proto|
     sys_firewall "Open this appserver to  port #{app_port} to Zend Server cluster manager" do
-      machine_tag "zscm:active=true"
+      machine_tag "appserver:zscm=true"
       port app_port
       protocol port_proto
       enable true
