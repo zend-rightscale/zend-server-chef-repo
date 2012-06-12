@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-log "closing firewal ports for in other Zend servers with the same tag"
+log "closing firewal ports in other Zend servers with the same tag"
 rs_utils_marker :begin
 if node[:sys_firewall][:enabled] == "enabled"
   include_recipe "iptables"
