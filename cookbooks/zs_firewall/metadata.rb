@@ -10,4 +10,3 @@ recipe "zs_firewall::open_zscm_ports","Basic configuration of Zend Server Cluste
 recipe "zs_firewall::close_zs_ports","closing firewall ports in other ZSs"
 recipe "zs_firewall::open_zs_gui_ports","Configuration of Zend server firewall"
 depends "sys_firewall"
-depends "rs_utils"
