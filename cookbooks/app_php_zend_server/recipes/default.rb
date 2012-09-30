@@ -10,9 +10,17 @@ rs_utils_marker :begin
 log " Setting provider specific settings for Zend server php application server."
 # prevent app_php::default from installing the RS php
 node[:app][:packages] = Array.new
+node[:app][:packages] = ["zend-server-php-5.3"]
 # Remove RS mod php enable in Ubuntu apache
 case node[:platform]
 when "ubuntu", "debian"
+  # add Zend server Repo
+  apt_repository "ZendServer" do
+  uri "http://23.22.212.238/zend-server"
+  distribution ["server"]
+  components ["non-free"]
+  key "http://repos.zend.com/zend.key"
+end
   node[:php][:module_dependencies] = Array.new
   node[:php][:module_dependencies] = [ "proxy_http"]
 when "centos","fedora","redhat"
