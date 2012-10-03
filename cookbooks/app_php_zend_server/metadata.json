@@ -1,31 +1,30 @@
 {
-  "name": "app_php_zend_server",
-  "recommendations": {
-  },
-  "platforms": {
-  },
-  "recipes": {
-    "app_php_zend_server::default": "set parameters for ZS install and add installation repositories"
-  },
   "replacing": {
   },
-  "attributes": {
-  },
-  "conflicting": {
-  },
-  "groupings": {
-  },
-  "license": "All rights reserved",
-  "maintainer_email": "amir@zend.com",
-  "dependencies": {
-    "app_php": ">= 0.0.0"
-  },
-  "maintainer": "Zend Technologies",
   "description": "Configures app_php to install Zend Server",
-  "version": "0.0.1",
   "providing": {
   },
   "suggestions": {
   },
-  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n"
+  "version": "0.0.1",
+  "attributes": {
+  },
+  "conflicting": {
+  },
+  "platforms": {
+  },
+  "license": "All rights reserved",
+  "recommendations": {
+  },
+  "maintainer_email": "amir@zend.com",
+  "maintainer": "Zend Technologies",
+  "recipes": {
+    "app_php_zend_server::default": "set parameters for ZS install and add installation repositories"
+  },
+  "dependencies": {
+  },
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "groupings": {
+  },
+  "name": "app_php_zend_server"
 }
