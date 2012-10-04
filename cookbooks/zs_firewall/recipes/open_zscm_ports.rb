@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 log "Opening firewal ports for Zend Server cluster manager"
-rs_utils_marker :begin
+rightscale_marker :begin
 if node[:cloud][:private_ips] && node[:cloud][:private_ips].size > 0
   ip = node[:cloud][:private_ips][0] # default to first private ip
 elsif node[:cloud][:public_ips] && node[:cloud][:public_ips].size > 0
@@ -43,4 +43,4 @@ if node[:sys_firewall][:enabled] == "enabled"
 
 end
 right_link_tag "appserver:zscm=true"
-rs_utils_marker :end
+rightscale_marker :end

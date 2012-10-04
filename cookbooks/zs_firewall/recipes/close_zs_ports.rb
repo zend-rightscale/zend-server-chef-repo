@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 log "closing firewal ports in other Zend servers with the same tag"
-rs_utils_marker :begin
+rightscale_marker :begin
 if node[:sys_firewall][:enabled] == "enabled"
   include_recipe "iptables"
   app_server_rules = {10060=>'tcp', 10063=>'tcp', 10070 => 'udp'} #10060,10063,10070 are ports for Zend session clustering
@@ -22,4 +22,4 @@ if node[:sys_firewall][:enabled] == "enabled"
     end
   end
 end
-rs_utils_marker :end
+rightscale_marker :end
