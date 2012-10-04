@@ -5,8 +5,8 @@
 
 # Required attributes
 #
-#set_unless[:app][:zend_server_php_version]='5.3'
-
+default[:app][:zend_server_repo_key_url]='http://repos.zend.com/zend.key'
+default[:app][:port] = 80
 # Recommended attributes
 #
 

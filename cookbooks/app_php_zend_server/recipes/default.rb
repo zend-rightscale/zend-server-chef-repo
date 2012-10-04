@@ -10,29 +10,31 @@ rs_utils_marker :begin
 log " Setting provider specific settings for Zend server php application server."
 # prevent app_php::default from installing the RS php
 node[:app][:packages] = Array.new
-node[:app][:packages] = ["zend-server-php-5.3"]
+node[:app][:packages] = ["zend-server-php" + node[:app][:zs_php_ver]]
 # Remove RS mod php enable in Ubuntu apache
 case node[:platform]
 when "ubuntu", "debian"
+  node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/deb"]
    #add Zend server Repo
   apt_repository "ZendServer" do
-    uri "http://23.22.212.238/zend-server/deb"
+    uri node[:app][:zend_repo_url] 
     distribution ["server"]
     components ["non-free"]
-    key "http://repos.zend.com/zend.key"
+    key node[:app][:zend_server_repo_key_url]
   end
   node[:php][:module_dependencies] = Array.new
   node[:php][:module_dependencies] = [ "proxy_http"]
 when "centos","fedora","redhat"
+  node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/deb"]
   # add the Zend GPG key
   yum_key "Zend" do
-    url "http://repos.zend.com/zend.key"
+    url node[:app][:zend_server_repo_key_url] 
     action :add
   end
   # add the Zennd repository
   yum_repository "zend_server" do
     description "Zend server repo"
-    url "http://23.22.212.238/zend-server/rpm"
+    url node[:app][:zend_repo_url]
     key "Zend"
    action :add
   end
@@ -46,5 +48,5 @@ else
   raise "ERROR: cannot detect a bind address on this application server."
 end
 node[:app][:bind_ip] = ip
-node[:app][:port] = 80
+#node[:app][:port] = 80
 rs_utils_marker :end
