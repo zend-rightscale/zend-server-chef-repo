@@ -2,7 +2,7 @@
 # Cookbook Name:: app_php_zend_server
 #
 # Copyright  Zend technologies Inc. 
-rs_utils_marker :begin
+rightscale_marker :begin
 log "detaching Zend server from the cluster"
 bash "leave_cluster" do
     user "root"
@@ -15,4 +15,4 @@ bash "leave_cluster" do
           /usr/local/zend/bin/zs-manage cluster-remove-server -N zend-zsd -K $web_api_key $web_api_key
       EOH
     end
-rs_utils_marker :end
+rightscale_marker :end

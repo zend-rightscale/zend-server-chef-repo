@@ -2,7 +2,7 @@
 # Cookbook Name:: app_php_zend_server
 #
 # Copyright  Zend technologies Inc. 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 log "join local Zend server to cluster"
 bash "join_zs_to_cluster" do
@@ -13,4 +13,4 @@ bash "join_zs_to_cluster" do
           /usr/local/zend/bin/zs-manage server-add-to-cluster -n #{[node[:app][:zend_server_name]} -i #{[node[:app][:zend_server_node_ip]}  -o #{[node[:app][:zend_server_mysql_address]} -u #{[node[:app][:zend_server_mysql_user]} -p #{[node[:app][:zend_server_mysql_password]} -d ZendServer -N zend-zsd -K $web_api_key
       EOH
     end
-rs_utils_marker :end
+rightscale_marker :end

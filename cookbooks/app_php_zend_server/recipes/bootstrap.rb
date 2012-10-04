@@ -2,7 +2,7 @@
 # Cookbook Name:: app_php_zend_server
 #
 # Copyright  Zend technologies Inc. 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 log "bootstrap Zend server into a single server mode"
 bash "bootstrap_zs" do
@@ -14,4 +14,4 @@ bash "bootstrap_zs" do
           /usr/local/zend/bin/zendctl.sh restart
       EOH
     end
-rs_utils_marker :end
+rightscale_marker :end

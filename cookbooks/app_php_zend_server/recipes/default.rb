@@ -5,7 +5,7 @@
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 # Copyright  Zend technologies Inc. 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 log " Setting provider specific settings for Zend server php application server."
 # prevent app_php::default from installing the RS php
@@ -49,4 +49,4 @@ else
 end
 node[:app][:bind_ip] = ip
 #node[:app][:port] = 80
-rs_utils_marker :end
+rightscale_marker :end
