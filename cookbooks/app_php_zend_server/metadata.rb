@@ -13,14 +13,14 @@ recipe "app_php_zend_server::leave_cluster", "remove the local server from Zend 
 attribute "app/zs_php_ver",
    :display_name => "php version",
    :description => "php version to install, 5.3 or 5.4",
-   :required => "required",
+   :required => "optional",
    :choice => ["5.3", "5.4"],
    :default => "5.4",
    :recipes => ["app_php_zend_server::default"]   
 attribute "app/zend_repo_base_url",
    :display_name => "zend repository base url",
    :description => "zend repository base url is the repository url without the suffix /deb or /rpm",
-   :required => "required",
+   :required => "optional",
    :default => "http://repos.zend.com/zend-server/6.0",
    :recipes => ["app_php_zend_server::default"]
 attribute "app/zend_gui_password",
