@@ -6,6 +6,8 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.0.1"
 depends "app_php"
 depends "rightscale"
+depends "apt"
+depends "yum"
 recipe "app_php_zend_server::default", "set parameters for ZS install and add installation repositories"
 recipe "app_php_zend_server::bootstrap", "Bootstrap Zend server to standalone server. Later we can add it to Cluster/MySQL"
 recipe "app_php_zend_server::join_cluster", "Join the local Zend Server to Cluster of Zend Servers by adding it directly into the MySQL schema"
