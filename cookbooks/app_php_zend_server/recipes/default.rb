@@ -18,7 +18,7 @@ when "ubuntu", "debian"
    #add Zend server Repo
   apt_repository "ZendServer" do
     uri node[:app][:zend_repo_url].to_s() 
-    distribution ["server"]
+    distribution "server"
     components ["non-free"]
     key node[:app][:zend_server_repo_key_url]
   end
