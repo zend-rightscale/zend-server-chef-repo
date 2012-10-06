@@ -30,13 +30,13 @@ when "centos","fedora","redhat"
   # add the Zend repositories
   yum_repository "zend_server" do
     description "Zend server repo noarch"
-    url (node[:app][:zend_repo_url] + "noarch").to_s()
+    url (node[:app][:zend_repo_url] + "noarch")
     key "Zend"
    action :add
   end
   yum_repository "zend_server" do
     description "Zend server repo arch"
-    url (node[:app][:zend_repo_url] + "$basearch").to_s()
+    url (node[:app][:zend_repo_url] + "$basearch")
     key "Zend"
    action :add
   end
