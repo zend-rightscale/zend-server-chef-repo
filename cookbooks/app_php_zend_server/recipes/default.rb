@@ -22,8 +22,7 @@ when "ubuntu", "debian"
     components ["non-free"]
     key node[:app][:zend_server_repo_key_url]
   end
-  node[:php][:module_dependencies] = Array.new
-  node[:php][:module_dependencies] = [ "proxy_http"]
+  node[:php][:module_dependencies] = Array.new(1,"proxy_http")
 when "centos","fedora","redhat"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/rpm"]
   # add the Zend GPG key
