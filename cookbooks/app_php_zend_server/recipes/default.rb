@@ -17,7 +17,7 @@ when "ubuntu", "debian"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/deb"]
    #add Zend server Repo
   apt_repository "ZendServer" do
-    uri node[:app][:zend_repo_url] 
+    uri node[:app][:zend_repo_url].to_s() 
     distribution ["server"]
     components ["non-free"]
     key node[:app][:zend_server_repo_key_url]
@@ -25,7 +25,7 @@ when "ubuntu", "debian"
   node[:php][:module_dependencies] = Array.new
   node[:php][:module_dependencies] = [ "proxy_http"]
 when "centos","fedora","redhat"
-  node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/deb"]
+  node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/rpm"]
   # add the Zend GPG key
   yum_key "Zend" do
     url node[:app][:zend_server_repo_key_url] 
