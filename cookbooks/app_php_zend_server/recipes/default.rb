@@ -9,9 +9,7 @@ rightscale_marker :begin
 
 log " Setting provider specific settings for Zend server php application server."
 # prevent app_php::default from installing the RS php
-node[:app][:packages] = Array.new
-node[:app][:packages] = ["zend-server-php" + node[:app][:zs_php_ver]]
-# Remove RS mod php enable in Ubuntu apache
+zs_package = ["zend-server-php" + node[:app][:zs_php_ver]]
 case node[:platform]
 when "ubuntu", "debian"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/deb"]
@@ -22,7 +20,6 @@ when "ubuntu", "debian"
     components ["non-free"]
     key node[:app][:zend_server_repo_key_url]
   end
-  node[:php][:module_dependencies] = Array.new(1,"proxy_http")
 when "centos","fedora","redhat"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/rpm"]
   # add the Zend GPG key
@@ -44,6 +41,23 @@ when "centos","fedora","redhat"
    action :add
   end
 end
+log "  Setting provider specific settings for php application server."
+node[:app][:provider] = "app_php"
+
+# Setting generic app attributes
+platform = node[:platform]
+case platform
+when "ubuntu"
+  node[:app][:user] = "www-data"
+  node[:app][:group] = "www-data"
+when "centos", "redhat"
+  node[:app][:user] = "apache"
+  node[:app][:group] = "apache"
+end
+log "  Install Zend Server"
+package zs_package do
+  action :install
+end
 #Set the right IP for use in firewall rules
 if node[:cloud][:private_ips] && node[:cloud][:private_ips].size > 0
   ip = node[:cloud][:private_ips][0] # default to first private ip
@@ -54,4 +68,10 @@ else
 end
 node[:app][:bind_ip] = ip
 #node[:app][:port] = 80
+# Setting app LWRP attribute
+node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_apache][:application_name]}"
+
+# PHP shares the same doc root with the application destination
+node[:app][:root] = "#{node[:app][:destination]}"
+
 rightscale_marker :end
