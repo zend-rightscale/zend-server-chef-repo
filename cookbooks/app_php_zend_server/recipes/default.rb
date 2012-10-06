@@ -9,7 +9,7 @@ rightscale_marker :begin
 
 log " Setting provider specific settings for Zend server php application server."
 # prevent app_php::default from installing the RS php
-zs_package = ["zend-server-php" + node[:app][:zs_php_ver]]
+zs_package = "zend-server-php" + node[:app][:zs_php_ver]
 case node[:platform]
 when "ubuntu", "debian"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/deb"]
