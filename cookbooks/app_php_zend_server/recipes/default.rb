@@ -33,7 +33,7 @@ when "centos","fedora","redhat"
   # add the Zennd repository
   yum_repository "zend_server" do
     description "Zend server repo"
-    url node[:app][:zend_repo_url]
+    url node[:app][:zend_repo_url].to_s()
     key "Zend"
    action :add
   end
