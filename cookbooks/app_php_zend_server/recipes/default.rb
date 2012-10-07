@@ -24,7 +24,7 @@ when "centos","fedora","redhat"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/rpm"]
   # add the Zend GPG key
   yum_key "Zend" do
-    url node[:app][:zend_server_repo_key_url] 
+    url node[:app][:zend_server_repo_key_url].to_s()
     action :add
   end
   # add the Zend repositories
