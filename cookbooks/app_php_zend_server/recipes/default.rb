@@ -14,11 +14,11 @@ case node[:platform]
 when "ubuntu", "debian"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/deb"]
    #add Zend server Repo
-  apt_repository "ZendServer" do
+  apt_repository "zend" do
     uri node[:app][:zend_repo_url].to_s() 
     distribution "server"
     components ["non-free"]
-    key node[:app][:zend_server_repo_key_url]
+    key node[:app][:zend_server_repo_key_url].to_s()
   end
 when "centos","fedora","redhat"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/rpm"]
