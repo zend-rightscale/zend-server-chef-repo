@@ -12,16 +12,16 @@ log " Setting provider specific settings for Zend server php application server.
 zs_package = "zend-server-php-" + node[:app][:zs_php_ver]
 case node[:platform]
 when "ubuntu", "debian"
-  node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/deb"]
+  node[:app][:zend_repo_url]=node[:app][:zend_repo_base_url] + "/deb"
    #add Zend server Repo
   apt_repository "zend" do
-    uri node[:app][:zend_repo_url].to_s() 
+    uri node[:app][:zend_repo_url] 
     distribution "server"
     components ["non-free"]
     key node[:app][:zend_server_repo_key_url].to_s()
   end
 when "centos","fedora","redhat"
-  node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/rpm"]
+  node[:app][:zend_repo_url]=node[:app][:zend_repo_base_url] + "/rpm"
   # add the Zend GPG key
   yum_key "Zend" do
     url node[:app][:zend_server_repo_key_url].to_s()
@@ -30,13 +30,13 @@ when "centos","fedora","redhat"
   # add the Zend repositories
   yum_repository "zend_noarch" do
     description "Zend server repo noarch"
-    url (node[:app][:zend_repo_url].to_s() + "/noarch")
+    url (node[:app][:zend_repo_url] + "/noarch")
     key "Zend"
    action :add
   end
   yum_repository "zend_arch" do
     description "Zend server repo arch specific"
-    url (node[:app][:zend_repo_url].to_s() + "/$basearch")
+    url (node[:app][:zend_repo_url] + "/$basearch")
     key "Zend"
    action :add
   end
