@@ -14,29 +14,29 @@ case node[:platform]
 when "ubuntu", "debian"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/deb"]
    #add Zend server Repo
-  apt_repository "ZendServer" do
+  apt_repository "zend" do
     uri node[:app][:zend_repo_url].to_s() 
     distribution "server"
     components ["non-free"]
-    key node[:app][:zend_server_repo_key_url]
+    key node[:app][:zend_server_repo_key_url].to_s()
   end
 when "centos","fedora","redhat"
   node[:app][:zend_repo_url]=[node[:app][:zend_repo_base_url] + "/rpm"]
   # add the Zend GPG key
   yum_key "Zend" do
-    url node[:app][:zend_server_repo_key_url] 
+    url node[:app][:zend_server_repo_key_url].to_s()
     action :add
   end
   # add the Zend repositories
-  yum_repository "zend_server" do
+  yum_repository "zend_noarch" do
     description "Zend server repo noarch"
-    url (node[:app][:zend_repo_url].to_s() + "noarch")
+    url (node[:app][:zend_repo_url].to_s() + "/noarch")
     key "Zend"
    action :add
   end
-  yum_repository "zend_server" do
-    description "Zend server repo arch"
-    url (node[:app][:zend_repo_url].to_s() + "$basearch")
+  yum_repository "zend_arch" do
+    description "Zend server repo arch specific"
+    url (node[:app][:zend_repo_url].to_s() + "/$basearch")
     key "Zend"
    action :add
   end
