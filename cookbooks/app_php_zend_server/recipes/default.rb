@@ -27,4 +27,5 @@ else
 end
 node[:app][:bind_ip] = ip
 node[:app][:port] = 80
+node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_apache][:application_name]}
 rs_utils_marker :end
