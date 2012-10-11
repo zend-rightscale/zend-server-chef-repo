@@ -20,7 +20,7 @@ bash "fix_vhost_file" do
   cwd "/tmp"
   code <<-EOH
         vhost_conf_file="#{vhost_conf_file}"
-        docroot="/home/webapp/#{web_apache[:application_name]}"
+        docroot="/home/webapp/#{node[:web_apache][:application_name]}"
         sed "s|DocumentRoot|DocumentRoot \"$docroot\" |g" -i  $vhost_conf_file
         sed "s|<Directory >|<Directory \"$docroot\"> |g" -i  $vhost_conf_file
   EOH
