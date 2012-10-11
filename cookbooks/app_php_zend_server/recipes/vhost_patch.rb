@@ -21,6 +21,7 @@ bash "fix_vhost_file" do
   code <<-EOH
         vhost_conf_file="#{vhost_conf_file}"
         docroot="/home/webapp/#{node[:web_apache][:application_name]}"
+        mkdir -p $docroot
         sed "s|DocumentRoot|DocumentRoot \"$docroot\" |g" -i  $vhost_conf_file
         sed "s|<Directory >|<Directory \"$docroot\"> |g" -i  $vhost_conf_file
   EOH
