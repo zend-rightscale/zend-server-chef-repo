@@ -8,7 +8,6 @@
 rs_utils_marker :begin
 
 node[:app][:port] = 80
-node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_apache][:application_name]}"
 case node[:platform]
 when "ubuntu", "debian"
   apache_name = "apache2"   
@@ -21,7 +20,7 @@ bash "fix_vhost_file" do
   cwd "/tmp"
   code <<-EOH
         vhost_conf_file="#{vhost_conf_file}"
-        docroot="#{node[:app][:destination]}"
+        docroot="/home/webapp/#{web_apache[:application_name]}"
         sed "s|DocumentRoot|DocumentRoot \"$docroot\" |g" -i  $vhost_conf_file
         sed "s|<Directory >|<Directory \"$docroot\"> |g" -i  $vhost_conf_file
   EOH
