@@ -11,10 +11,11 @@ node[:app][:port] = 80
 node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_apache][:application_name]}"
 case node[:platform]
 when "ubuntu", "debian"
-  vhost_conf_file = "/etc/apache2/sites-enabled/#{node[:web_apache][:application_name]}"   
+  apache_name = "apache2"   
 when "centos","fedora","redhat"
-  vhost_conf_file = "/etc/httpd/sites-enabled/#{node[:web_apache][:application_name]}"
+  apache_name = "httpd"
 end
+vhost_conf_file = "/etc/apache_name/sites-enabled/#{node[:web_apache][:application_name]}.conf"
 bash "fix_vhost_file" do
   user "root"
   cwd "/tmp"
