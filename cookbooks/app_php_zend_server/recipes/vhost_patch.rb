@@ -15,7 +15,7 @@ when "ubuntu", "debian"
 when "centos","fedora","redhat"
   apache_name = "httpd"
 end
-vhost_conf_file = "/etc/apache_name/sites-enabled/#{node[:web_apache][:application_name]}.conf"
+vhost_conf_file = "/etc/#{apache_name}/sites-enabled/#{node[:web_apache][:application_name]}.conf"
 bash "fix_vhost_file" do
   user "root"
   cwd "/tmp"
