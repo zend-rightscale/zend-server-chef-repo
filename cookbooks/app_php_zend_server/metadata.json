@@ -1,31 +1,32 @@
 {
+  "groupings": {
+  },
+  "maintainer_email": "amir@zend.com",
+  "version": "0.0.1",
+  "platforms": {
+  },
+  "name": "app_php_zend_server",
+  "conflicting": {
+  },
   "dependencies": {
     "app": ">= 0.0.0"
   },
-  "name": "app_php_zend_server",
-  "maintainer_email": "amir@zend.com",
-  "attributes": {
-  },
   "license": "All rights reserved",
-  "suggestions": {
+  "description": "Installs/Configures app_php_zend_server",
+  "recipes": {
+    "app_php_zend_server::default": "remove php packages from packages to install",
+    "app_php_zend_server::vhost_patch": "Patch to fix vhost problem when changing vhost name"
   },
-  "platforms": {
-  },
-  "maintainer": "Zend Technologies",
-  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "version": "0.0.1",
   "recommendations": {
   },
-  "recipes": {
-    "app_php_zend_server::default": "remove php packages from packages to install"
+  "maintainer": "Zend Technologies",
+  "providing": {
   },
-  "groupings": {
-  },
-  "conflicting": {
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "attributes": {
   },
   "replacing": {
   },
-  "description": "Installs/Configures app_php_zend_server",
-  "providing": {
+  "suggestions": {
   }
 }

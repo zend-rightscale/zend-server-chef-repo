@@ -12,3 +12,4 @@ depends "app"
 #depends "rs_utils"
 
 recipe "app_php_zend_server::default", "remove php packages from packages to install"
+recipe "app_php_zend_server::vhost_patch", "Patch to fix vhost problem when changing vhost name"
