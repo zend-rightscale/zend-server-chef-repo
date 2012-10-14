@@ -4,7 +4,7 @@
 # Copyright  Zend technologies Inc. 
 rightscale_marker :begin
 code_to_run = <<-EOH
-          web_api_key2=`mysql --skip-column-names -h 10.198.89.155 -uadminuser -ppassword ZendServer << EOF
+          web_api_key=`mysql --skip-column-names -h 10.198.89.155 -uadminuser -ppassword ZendServer << EOF
           select HASH from GUI_WEBAPI_KEYS where NAME="zend-zsd";
 EOF
 `
