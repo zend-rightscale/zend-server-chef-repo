@@ -5,7 +5,7 @@
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 # Copyright  Zend technologies Inc. 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 #node[:app][:port] = 80
 case node[:platform]
@@ -26,4 +26,4 @@ bash "fix_vhost_file" do
         sed "s|<Directory >|<Directory \"$docroot\"> |g" -i  $vhost_conf_file
   EOH
     end
-rs_utils_marker :end
+rightscale_marker :end
