@@ -9,7 +9,6 @@ rightscale_marker :begin
 
 log " Setting provider specific settings for Zend server php application server."
 # prevent app_php::default from installing the RS php
-zs_package = "zend-server-php-" + node[:app][:zs_php_ver]
 case node[:platform]
 when "ubuntu", "debian"
   node[:app][:zend_repo_url]=node[:app][:zend_repo_base_url] + "/deb"
@@ -53,10 +52,6 @@ when "ubuntu"
 when "centos", "redhat"
   node[:app][:user] = "apache"
   node[:app][:group] = "apache"
-end
-log "  Install Zend Server"
-package zs_package do
-  action :install
 end
 #Set the right IP for use in firewall rules
 if node[:cloud][:private_ips] && node[:cloud][:private_ips].size > 0
