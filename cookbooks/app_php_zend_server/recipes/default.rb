@@ -69,4 +69,8 @@ node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_a
 # PHP shares the same doc root with the application destination
 node[:app][:root] = "#{node[:app][:destination]}"
 
+directory "#{node[:app][:destination]}" do
+  recursive true 
+end
+
 rightscale_marker :end
