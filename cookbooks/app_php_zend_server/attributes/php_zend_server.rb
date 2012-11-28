@@ -7,7 +7,6 @@
 #
 default[:app_php_zend_server][:repo_key_url]='http://repos.zend.com/zend.key'
 default[:app][:port] = 80
-default[:app_php_zend_server][:package_name] = "zend-server-php-" + node[:app][:zs_php_ver]
 # Recommended attributes
 #
 
