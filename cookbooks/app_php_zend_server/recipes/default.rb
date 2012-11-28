@@ -9,55 +9,44 @@ rightscale_marker :begin
 
 log " Setting provider specific settings for Zend server php application server."
 # prevent app_php::default from installing the RS php
-zs_package = "zend-server-php-" + node[:app][:zs_php_ver]
 case node[:platform]
 when "ubuntu", "debian"
-  node[:app][:zend_repo_url]=node[:app][:zend_repo_base_url] + "/deb"
+  node[:app][:user] = "www-data"
+  node[:app][:group] = "www-data"
+  node[:app_php_zend_server][:zend_repo_url]=node[:app_php_zend_server][:repo_base_url] + "/deb"
    #add Zend server Repo
   apt_repository "zend" do
-    uri node[:app][:zend_repo_url] 
+    uri node[:app_php_zend_server][:zend_repo_url] 
     distribution "server"
     components ["non-free"]
-    key node[:app][:zend_server_repo_key_url].to_s()
+    key node[:app_php_zend_server][:repo_key_url].to_s()
   end
 when "centos","fedora","redhat"
-  node[:app][:zend_repo_url]=node[:app][:zend_repo_base_url] + "/rpm"
+  node[:app][:user] = "apache"
+  node[:app][:group] = "apache"
+  node[:app_php_zend_server][:zend_repo_url]=node[:app_php_zend_server][:repo_base_url] + "/rpm"
   # add the Zend GPG key
   yum_key "Zend" do
-    url node[:app][:zend_server_repo_key_url].to_s()
+    url node[:app_php_zend_server][:repo_key_url].to_s()
     action :add
   end
   # add the Zend repositories
   yum_repository "zend_noarch" do
     description "Zend server repo noarch"
-    url (node[:app][:zend_repo_url] + "/noarch")
+    url (node[:app_php_zend_server][:zend_repo_url] + "/noarch")
     key "Zend"
    action :add
   end
   yum_repository "zend_arch" do
     description "Zend server repo arch specific"
-    url (node[:app][:zend_repo_url] + "/$basearch")
+    url (node[:app_php_zend_server][:zend_repo_url] + "/$basearch")
     key "Zend"
    action :add
   end
 end
 log "  Setting provider specific settings for php application server."
-node[:app][:provider] = "app_php"
+node[:app][:provider] = "app_php_zend_server"
 
-# Setting generic app attributes
-platform = node[:platform]
-case platform
-when "ubuntu"
-  node[:app][:user] = "www-data"
-  node[:app][:group] = "www-data"
-when "centos", "redhat"
-  node[:app][:user] = "apache"
-  node[:app][:group] = "apache"
-end
-log "  Install Zend Server"
-package zs_package do
-  action :install
-end
 #Set the right IP for use in firewall rules
 if node[:cloud][:private_ips] && node[:cloud][:private_ips].size > 0
   ip = node[:cloud][:private_ips][0] # default to first private ip
@@ -74,4 +63,7 @@ node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_a
 # PHP shares the same doc root with the application destination
 node[:app][:root] = "#{node[:app][:destination]}"
 
+directory "#{node[:app][:destination]}" do
+  recursive true 
+end
 rightscale_marker :end

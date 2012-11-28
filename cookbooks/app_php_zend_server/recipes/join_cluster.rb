@@ -10,7 +10,7 @@ code_to_run = <<-EOH
           #if nc -zv -w120 $HOSTIP 22 <<< ” &> /dev/null
           #then
           #          log 'MySQL Port is open'
-                    /usr/local/zend/bin/zs-manage server-add-to-cluster -n #{node[:app][:zend_server_name]} -i #{node[:app][:zend_server_node_ip]}  -o #{node[:app][:zend_server_mysql_address]} -u #{node[:app][:zend_server_mysql_user]} -p #{node[:app][:zend_server_mysql_password]} -d ZendServer -N zend-zsd -K $web_api_key
+                    /usr/local/zend/bin/zs-manage server-add-to-cluster -n #{node[:app_php_zend_server][:zend_server_name]} -i #{node[:app_php_zend_server][:zend_server_node_ip]}  -o #{node[:app_php_zend_server][:mysql_address]} -u #{node[:app_php_zend_server][:mysql_user]} -p #{node[:app_php_zend_server][:mysql_password]} -d ZendServer -N zend-zsd -K $web_api_key
           #else
           #          log 'MySQL Port is closed'
           #          exit 1
