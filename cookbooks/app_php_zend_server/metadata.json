@@ -1,174 +1,188 @@
 {
-  "version": "0.0.1",
   "providing": {
-  },
-  "conflicting": {
-  },
-  "recommendations": {
-  },
-  "maintainer": "Zend Technologies",
-  "description": "Configures app_php to install Zend Server",
-  "attributes": {
-    "app/zend_server_mysql_address": {
-      "required": "required",
-      "description": "Zend Server mysql DB host address accessible to this server",
-      "type": "string",
-      "display_name": "Zend server mysql address",
-      "recipes": [
-        "app_php_zend_server::join_cluster",
-        "app_php_zend_server::leave_cluster"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ]
-    },
-    "app/zend_server_mysql_password": {
-      "required": "required",
-      "description": "Zend Server mysql password",
-      "type": "string",
-      "display_name": "Zend server mysql password",
-      "recipes": [
-        "app_php_zend_server::join_cluster",
-        "app_php_zend_server::leave_cluster"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ]
-    },
-    "app/zend_server_node_ip": {
-      "required": "required",
-      "description": "Zend Server IP accessible to other servers in the cluster",
-      "type": "string",
-      "display_name": "Zend server node IP",
-      "recipes": [
-        "app_php_zend_server::join_cluster"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ]
-    },
-    "app/zend_license_key": {
-      "required": "required",
-      "description": "Zend Server license key should be supplied by Zend or Rightscale coupled with the Zend Server order number",
-      "type": "string",
-      "display_name": "Zend server license key ",
-      "recipes": [
-        "app_php_zend_server::bootstrap"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ]
-    },
-    "app/zend_server_name": {
-      "required": "required",
-      "description": "Zend Server name to identify the server in the gui",
-      "type": "string",
-      "display_name": "Zend server name",
-      "recipes": [
-        "app_php_zend_server::join_cluster"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ]
-    },
-    "app/zs_php_ver": {
-      "required": "optional",
-      "description": "php version to install, 5.3 or 5.4",
-      "type": "string",
-      "default": "5.4",
-      "display_name": "php version",
-      "recipes": [
-        "app_php_zend_server::default"
-      ],
-      "calculated": false,
-      "choice": [
-        "5.3",
-        "5.4"
-      ]
-    },
-    "app/zend_server_mysql_user": {
-      "required": "required",
-      "description": "Zend Server mysql user name that can create the schema and access it",
-      "type": "string",
-      "display_name": "Zend server mysql user name",
-      "recipes": [
-        "app_php_zend_server::join_cluster",
-        "app_php_zend_server::leave_cluster"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ]
-    },
-    "app/zend_gui_password": {
-      "required": "required",
-      "description": "A string that will be used as the password to Zend Server gui",
-      "type": "string",
-      "display_name": "zend gui password",
-      "recipes": [
-        "app_php_zend_server::bootstrap"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ]
-    },
-    "app/zend_order_number": {
-      "required": "required",
-      "description": "Zend Server order number should be supplied by Zend or Rightscale coupled with the license key",
-      "type": "string",
-      "display_name": "Zend Server order number",
-      "recipes": [
-        "app_php_zend_server::bootstrap"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ]
-    },
-    "app/zend_repo_base_url": {
-      "required": "optional",
-      "description": "zend repository base url is the repository url without the suffix /deb or /rpm",
-      "type": "string",
-      "default": "http://repos.zend.com/zend-server/6.0",
-      "display_name": "zend repository base url",
-      "recipes": [
-        "app_php_zend_server::default"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ]
-    }
-  },
-  "recipes": {
-    "app_php_zend_server::vhost_patch": "Patch the vhost file with docroot parameter and directory name",
-    "app_php_zend_server::join_cluster": "Join the local Zend Server to Cluster of Zend Servers by adding it directly into the MySQL schema",
-    "app_php_zend_server::leave_cluster": "remove the local server from Zend Server cluster",
-    "app_php_zend_server::default": "set parameters for ZS install and add installation repositories",
-    "app_php_zend_server::bootstrap": "Bootstrap Zend server to standalone server. Later we can add it to Cluster/MySQL"
-  },
-  "license": "All rights reserved",
-  "suggestions": {
-  },
-  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "replacing": {
-  },
-  "dependencies": {
-    "yum": ">= 0.0.0",
-    "apt": ">= 0.0.0",
-    "rightscale": ">= 0.0.0",
-    "app_php": ">= 0.0.0"
-  },
-  "groupings": {
   },
   "platforms": {
   },
+  "replacing": {
+  },
   "maintainer_email": "amir@zend.com",
-  "name": "app_php_zend_server"
+  "name": "app_php_zend_server",
+  "recommendations": {
+  },
+  "dependencies": {
+    "rightscale": ">= 0.0.0",
+    "yum": ">= 0.0.0",
+    "apt": ">= 0.0.0",
+    "app": ">= 0.0.0",
+    "repo": ">= 0.0.0",
+    "web_apache": ">= 0.0.0"
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "recipes": {
+    "app_php_zend_server::leave_cluster": "remove the local server from Zend Server cluster",
+    "app_php_zend_server::vhost_patch": "Patch the vhost file with docroot parameter and directory name",
+    "app_php_zend_server::install": "Install Zend server and configure it as a standalone server",
+    "app_php_zend_server::default": "set parameters for ZS install and add installation repositories",
+    "app_php_zend_server::join_cluster": "Join the local Zend Server to Cluster of Zend Servers by adding it directly into the MySQL schema"
+  },
+  "license": "Copyright Zend Technologies, Inc. All rights reserved.",
+  "version": "2.0.0",
+  "attributes": {
+    "app_php_zend_server/php_ver": {
+      "choice": [
+        "5.3",
+        "5.4"
+      ],
+      "default": "5.4",
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::default"
+      ],
+      "description": "php version to install, 5.3 or 5.4",
+      "type": "string",
+      "display_name": "php version",
+      "required": "optional"
+    },
+    "app_php_zend_server/zend_license_key": {
+      "choice": [
+
+      ],
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::install"
+      ],
+      "description": "Zend Server license key should be supplied by Zend or Rightscale coupled with the Zend Server order number",
+      "type": "string",
+      "display_name": "Zend server license key ",
+      "required": "required"
+    },
+    "app_php_zend_server/mysql_address": {
+      "choice": [
+
+      ],
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::join_cluster",
+        "app_php_zend_server::leave_cluster"
+      ],
+      "description": "Zend Server mysql DB host address accessible to this server",
+      "type": "string",
+      "display_name": "Zend server mysql address",
+      "required": "required"
+    },
+    "app_php_zend_server/repo_base_url": {
+      "choice": [
+
+      ],
+      "default": "http://repos.zend.com/zend-server/6.0",
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::default"
+      ],
+      "description": "zend repository base url is the repository url without the suffix /deb or /rpm",
+      "type": "string",
+      "display_name": "zend repository base url",
+      "required": "optional"
+    },
+    "app_php_zend_server/gui_password": {
+      "choice": [
+
+      ],
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::install"
+      ],
+      "description": "A string that will be used as the password to Zend Server gui",
+      "type": "string",
+      "display_name": "zend gui password",
+      "required": "required"
+    },
+    "app_php_zend_server/zend_server_mysql_password": {
+      "choice": [
+
+      ],
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::join_cluster",
+        "app_php_zend_server::leave_cluster"
+      ],
+      "description": "Zend Server mysql password",
+      "type": "string",
+      "display_name": "Zend server mysql password",
+      "required": "required"
+    },
+    "app_php_zend_server/zend_server_name": {
+      "choice": [
+
+      ],
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::join_cluster"
+      ],
+      "description": "Zend Server name to identify the server in the gui",
+      "type": "string",
+      "display_name": "Zend server name",
+      "required": "required"
+    },
+    "app_php_zend_server/order_number": {
+      "choice": [
+
+      ],
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::install"
+      ],
+      "description": "Zend Server order number should be supplied by Zend or Rightscale coupled with the license key",
+      "type": "string",
+      "display_name": "Zend Server order number",
+      "required": "required"
+    },
+    "app_php_zend_server/mysql_user": {
+      "choice": [
+
+      ],
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::join_cluster",
+        "app_php_zend_server::leave_cluster"
+      ],
+      "description": "Zend Server mysql user name that can create the schema and access it",
+      "type": "string",
+      "display_name": "Zend server mysql user name",
+      "required": "required"
+    },
+    "app_php_zend_server/zend_server_node_ip": {
+      "choice": [
+
+      ],
+      "calculated": false,
+      "recipes": [
+        "app_php_zend_server::join_cluster"
+      ],
+      "description": "Zend Server IP accessible to other servers in the cluster",
+      "type": "string",
+      "display_name": "Zend server node IP",
+      "required": "required"
+    },
+    "app_php_zend_server": {
+      "choice": [
+
+      ],
+      "calculated": false,
+      "recipes": [
+
+      ],
+      "type": "hash",
+      "display_name": "PHP Application Settings",
+      "required": "optional"
+    }
+  },
+  "suggestions": {
+  },
+  "maintainer": "Zend Technologies",
+  "description": "Installs the php application server Zend Server",
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n"
 }
