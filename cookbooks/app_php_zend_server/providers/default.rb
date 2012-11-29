@@ -45,7 +45,7 @@ end
 # Setup apache PHP virtual host
 action :setup_vhost do
 
-  project_root = new_resource.destination
+  project_root = node[:app][:destination]
   php_port = new_resource.port
 
   # Disable default vhost
