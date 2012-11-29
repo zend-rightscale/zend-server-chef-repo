@@ -36,6 +36,12 @@ action :restart do
   action_start
 end
 
+action :install do
+
+log "Installing php after app default and setvhost recipes ran. Zend Server needs the default vhost in place when installed"
+
+end
+
 # Setup apache PHP virtual host
 action :setup_vhost do
 
