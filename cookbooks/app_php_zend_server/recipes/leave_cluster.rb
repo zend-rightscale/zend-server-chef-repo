@@ -12,7 +12,7 @@ bash "leave_cluster" do
           select HASH from GUI_WEBAPI_KEYS where NAME="zend-zsd";
           EOFMYSQL`
           node_id="$(grep zend_server_daemon.cluster_node_id /usr/local/zend/etc/zsd.ini | cut -d= -f 2 | cut -d@ -f 1)"
-          /usr/local/zend/bin/zs-manage cluster-remove-server -N zend-zsd -K $web_api_key $web_api_key
+          /usr/local/zend/bin/zs-manage cluster-remove-server -N zend-zsd -K $web_api_key -s -r 20 $node_id
       EOH
     end
 rightscale_marker :end
