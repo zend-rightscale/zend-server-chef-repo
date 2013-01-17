@@ -13,7 +13,7 @@ case node[:platform]
 when "ubuntu", "debian"
   node[:app][:user] = "www-data"
   node[:app][:group] = "www-data"
-  node[:app_php_zend_server][:zend_repo_url]=node[:app_php_zend_server][:repo_base_url] + "/ubuntu"
+  node[:app_php_zend_server][:zend_repo_url]=node[:app_php_zend_server][:repo_base_url] + "/deb_ssl1.0"
    #add Zend server Repo
   apt_repository "zend" do
     uri node[:app_php_zend_server][:zend_repo_url] 
