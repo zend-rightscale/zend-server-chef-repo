@@ -8,7 +8,8 @@
 rightscale_marker :begin
 
 log " Setting provider specific settings for Zend server php application server."
-# prevent app_php::default from installing the RS php
+node[:app][:provider] = "app_php_zend_server"
+
 case node[:platform]
 when "ubuntu", "debian"
   node[:app][:user] = "www-data"
@@ -44,26 +45,22 @@ when "centos","fedora","redhat"
    action :add
   end
 end
-log "  Setting provider specific settings for php application server."
-node[:app][:provider] = "app_php_zend_server"
+
 
 #Set the right IP for use in firewall rules
-if node[:cloud][:private_ips] && node[:cloud][:private_ips].size > 0
-  ip = node[:cloud][:private_ips][0] # default to first private ip
-elsif node[:cloud][:public_ips] && node[:cloud][:public_ips].size > 0
-  ip = node[:cloud][:public_ips][0] # default to first public ip
-else
-  raise "ERROR: cannot detect a bind address on this application server."
-end
-node[:app][:bind_ip] = ip
-#node[:app][:port] = 80
-# Setting app LWRP attribute
-node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_apache][:application_name]}"
+#if node[:cloud][:private_ips] && node[:cloud][:private_ips].size > 0
+#  ip = node[:cloud][:private_ips][0] # default to first private ip
+#elsif node[:cloud][:public_ips] && node[:cloud][:public_ips].size > 0
+#  ip = node[:cloud][:public_ips][0] # default to first public ip
+#else
+#  raise "ERROR: cannot detect a bind address on this application server."
+#end
+#node[:app][:bind_ip] = ip
 
 # PHP shares the same doc root with the application destination
-node[:app][:root] = "#{node[:app][:destination]}"
+#node[:app][:root] = "#{node[:app][:destination]}"
 
-directory "#{node[:app][:destination]}" do
-  recursive true 
-end
+#directory "#{node[:app][:destination]}" do
+#  recursive true 
+#end
 rightscale_marker :end
