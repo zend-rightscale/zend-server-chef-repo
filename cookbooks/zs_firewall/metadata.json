@@ -1,34 +1,33 @@
 {
-  "providing": {
-  },
-  "license": "All rights reserved",
-  "conflicting": {
-  },
-  "maintainer": "Amir Friedman",
-  "name": "zs_firewall",
-  "version": "0.5.0",
-  "suggestions": {
-  },
-  "platforms": {
-  },
   "recipes": {
     "zs_firewall::close_zs_ports": "closing firewall ports in other ZSs",
-    "zs_firewall::open_zs_gui_ports": "Configuration of Zend server firewall",
     "zs_firewall::open_zs_ports": "Configuration of clustered Zend server firewall",
-    "zs_firewall::open_zscm_ports": "Basic configuration of Zend Server Cluster Manager firewall"
+    "zs_firewall::open_zs_gui_ports": "Configuration of Zend server firewall"
   },
-  "groupings": {
+  "conflicting": {
+  },
+  "maintainer_email": "amir@zend.com",
+  "providing": {
+  },
+  "replacing": {
   },
   "dependencies": {
     "sys_firewall": ">= 0.0.0"
   },
-  "maintainer_email": "amir@zend.com",
-  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "recommendations": {
+  "license": "All rights reserved",
+  "name": "zs_firewall",
+  "version": "0.5.0",
+  "platforms": {
   },
   "description": "Configuration of zs firewall",
+  "maintainer": "Amir Friedman",
   "attributes": {
   },
-  "replacing": {
+  "suggestions": {
+  },
+  "recommendations": {
+  },
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "groupings": {
   }
 }

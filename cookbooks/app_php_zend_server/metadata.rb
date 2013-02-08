@@ -14,7 +14,6 @@ recipe "app_php_zend_server::default", "set parameters for ZS install and add in
 recipe "app_php_zend_server::install", "Install Zend server and configure it as a standalone server"
 recipe "app_php_zend_server::join_cluster", "Join the local Zend Server to Cluster of Zend Servers by adding it directly into the MySQL schema"
 recipe "app_php_zend_server::leave_cluster", "remove the local server from Zend Server cluster"
-recipe "app_php_zend_server::vhost_patch", "Patch the vhost file with docroot parameter and directory name"
 attribute "app_php_zend_server",
   :display_name => "PHP Application Settings",
     :type => "hash"
