@@ -14,6 +14,7 @@ recipe "app_php_zend_server::default", "set parameters for ZS install and add in
 recipe "app_php_zend_server::install", "Install Zend server and configure it as a standalone server"
 recipe "app_php_zend_server::join_cluster", "Join the local Zend Server to Cluster of Zend Servers by adding it directly into the MySQL schema"
 recipe "app_php_zend_server::leave_cluster", "remove the local server from Zend Server cluster"
+recipe "app_php_zend_server::change_decommission_timeout", "change the rightlink decomission timeout"
 attribute "app_php_zend_server",
   :display_name => "PHP Application Settings",
     :type => "hash"
@@ -70,3 +71,9 @@ attribute "app_php_zend_server/zend_server_mysql_password",
    :description => "Zend Server mysql password",
    :required => "required",
    :recipes => ["app_php_zend_server::join_cluster","app_php_zend_server::leave_cluster"]
+attribute "app_php_zend_server/decommission_timeout",
+          :display_name => "decommission timeout", 
+          :description => "Decommission timeout of the server before booting. Change is needed to enable session clustering longer transfer time",
+          :required => "optional",
+          :default => "180",
+          :recipes => ["app_php_zend_server::change_decommission_timeout"]

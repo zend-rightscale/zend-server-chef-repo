@@ -1,0 +1,2 @@
+sed "s|^\s*SHUTDOWN_DELAY\s*=.*|  SHUTDOWN_DELAY = <%= @decommission_timeout %>|g" -i /opt/rightscale/right_link/actors/instance_scheduler.rb
+/etc/init.d/rightlink restart
