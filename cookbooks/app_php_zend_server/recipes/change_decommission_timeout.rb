@@ -3,7 +3,9 @@
 #
 # Copyright Zend technologies Inc.
 rightscale_marker :begin
-unless  node[:app_php_zend_server][:decommission_timeout] == 'default' do
+If  node[:app_php_zend_server][:decommission_timeout] == 'default'
+  log "Not changing the default decommission value"
+else
   log "change rightlink decommission timeout to #{node[:app_php_zend_server][:decommission_timeout]}"
   template "/tmp/change_decommission.sh" do
     source "change_decommission.erb"
