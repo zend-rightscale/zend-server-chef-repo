@@ -36,6 +36,17 @@ attribute "app_php_zend_server/gui_password",
    :description => "A string that will be used as the password to Zend Server gui",
    :required => "required",
    :recipes => ["app_php_zend_server::install"]
+attribute "app_php_zend_server/api_key",
+   :display_name => "zend api key hash",
+   :description => "64 chars string that will be used as the webapi key hash to access Zend Server through webapi",
+   :required => "required",
+   :recipes => ["app_php_zend_server::install","app_php_zend_server::leave_cluster","app_php_zend_server::join_cluster"]
+attribute "app_php_zend_server/api_key_name",
+   :display_name => "zend api key name",
+   :description => "web api key name",
+   :required => "optional",
+   :default => "rightscale",
+   :recipes => ["app_php_zend_server::install","app_php_zend_server::leave_cluster","app_php_zend_server::join_cluster"]
 attribute "app_php_zend_server/order_number",
    :display_name => "Zend Server order number",
    :description => "Zend Server order number should be supplied by Zend or Rightscale coupled with the license key",
