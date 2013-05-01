@@ -46,21 +46,35 @@ when "centos","fedora","redhat"
   end
 end
 
+#From app_php::install recipe
+# Set ip address that the application service is listening on.
+# If instance has no public ip's first private ip will be used.
+# User will be notified.
+public_ip = node[:cloud][:public_ips][0]
+private_ip = node[:cloud][:private_ips][0]
+# See cookbooks/rightscale/libraries/helper.rb for the "is_valid_ip?" method.
+if RightScale::Utils::Helper.is_valid_ip?(public_ip)
+  node[:app][:backend_ip_type] == "Public" ? node[:app][:ip] = public_ip : node[:app][:ip] = private_ip
+elsif RightScale::Utils::Helper.is_valid_ip?(private_ip)
+  log "  No public IP detected. Forcing to first private: #{private_ip}"
+  node[:app][:ip] = private_ip
+else
+  raise "No valid public/private IP found for the server."
+end
 
-#Set the right IP for use in firewall rules
-#if node[:cloud][:private_ips] && node[:cloud][:private_ips].size > 0
-#  ip = node[:cloud][:private_ips][0] # default to first private ip
-#elsif node[:cloud][:public_ips] && node[:cloud][:public_ips].size > 0
-#  ip = node[:cloud][:public_ips][0] # default to first public ip
-#else
-#  raise "ERROR: cannot detect a bind address on this application server."
-#end
-#node[:app][:bind_ip] = ip
 
-# PHP shares the same doc root with the application destination
-#node[:app][:root] = "#{node[:app][:destination]}"
+# Setting app LWRP attribute
+node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_apache][:application_name]}"
 
-#directory "#{node[:app][:destination]}" do
-#  recursive true 
-#end
+directory "#{node[:app][:destination]}" do
+  recursive true
+end
+
+node[:app][:root]= node[:app][:destination]
+
+log "  Provider is #{node[:app][:provider]}"
+log "  Application IP is #{node[:app][:ip]}"
+log "  Application port is #{node[:app][:port]}"
+log "  Application root is #{node[:app][:root]}"
+
 rightscale_marker :end
