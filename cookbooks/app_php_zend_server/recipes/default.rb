@@ -69,7 +69,12 @@ node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_a
 directory "#{node[:app][:destination]}" do
   recursive true
 end
-
+app "default" do
+  persist true
+  provider node[:app][:provider]
+  packages node[:app][:packages]
+  action :install
+end
 node[:app][:root]= node[:app][:destination]
 
 log "  Provider is #{node[:app][:provider]}"
