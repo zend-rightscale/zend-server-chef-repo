@@ -46,12 +46,11 @@ when "centos","fedora","redhat"
   end
 end
 
-node[:app][:destination] = "#{node[:repo][:default][:destination]}/#{node[:web_apache][:application_name]}"
-node[:app][:root]="#{node[:app][:destination]}"
+
 
 log "  Provider is #{node[:app][:provider]}"
 log "  Application IP is #{node[:app][:ip]}"
 log "  Application port is #{node[:app][:port]}"
-log "  Application root is #{node[:app][:root]}"
+#log "  Application root is #{node[:app][:root]}"
 
 rightscale_marker :end
