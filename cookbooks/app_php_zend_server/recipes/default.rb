@@ -22,6 +22,12 @@ when "ubuntu", "debian"
     components ["non-free"]
     key node[:app_php_zend_server][:repo_key_url].to_s()
   end
+  apt_repository "nginx" do
+    uri "http://nginx.org/packages/ubuntu/"
+    distribution "lucid"
+    components ["nginx"]
+    key "http://nginx.org/keys/nginx_signing.key"
+  end
 when "centos","fedora","redhat"
   node[:app][:user] = "apache"
   node[:app][:group] = "apache"
@@ -41,6 +47,12 @@ when "centos","fedora","redhat"
   yum_repository "zend_arch" do
     description "Zend server repo arch specific"
     url (node[:app_php_zend_server][:zend_repo_url] + "/$basearch")
+    key "Zend"
+   action :add
+  end
+  yum_repository "nginx repo" do
+    description "nginx repo"
+    url ("http://nginx.org/packages/OS/OSRELEASE/$basearch/")
     key "Zend"
    action :add
   end
