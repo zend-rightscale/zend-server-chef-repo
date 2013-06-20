@@ -46,6 +46,8 @@ when "centos","fedora","redhat"
   end
 end
 
+
+
 log "  Provider is #{node[:app][:provider]}"
 log "  Application IP is #{node[:app][:ip]}"
 log "  Application port is #{node[:app][:port]}"
