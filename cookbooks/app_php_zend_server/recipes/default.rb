@@ -56,9 +56,9 @@ when "centos","fedora","redhat"
   end
   yum_repository "nginx_repo" do
     description "nginx_repo"
-    url ("http://nginx.org/packages/OS/OSRELEASE/$basearch/")
+    url ("http://nginx.org/packages/" + node[:platform] + "/6/$basearch/")
     key "nginx"
-   action :add
+    action :add
   end
 end
 
