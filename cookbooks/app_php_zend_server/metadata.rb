@@ -31,7 +31,7 @@ attribute "app_php_zend_server/repo_base_url",
    :display_name => "zend repository base url",
    :description => "zend repository base url is the repository url without the suffix /deb or /rpm",
    :required => "optional",
-   :default => "http://repos.zend.com/zend-server/6.0",
+   :default => "http://repos.zend.com/zend-server/6.1",
    :recipes => ["app_php_zend_server::default"]
 attribute "app_php_zend_server/gui_password",
    :display_name => "zend gui password",
