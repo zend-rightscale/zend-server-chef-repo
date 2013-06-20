@@ -37,6 +37,10 @@ when "centos","fedora","redhat"
     url node[:app_php_zend_server][:repo_key_url].to_s()
     action :add
   end
+  yum_key "nginx" do
+    url "http://nginx.org/keys/nginx_signing.key"
+    action :add
+  end
   # add the Zend repositories
   yum_repository "zend_noarch" do
     description "Zend server repo noarch"
@@ -50,10 +54,10 @@ when "centos","fedora","redhat"
     key "Zend"
    action :add
   end
-  yum_repository "nginx repo" do
-    description "nginx repo"
+  yum_repository "nginx_repo" do
+    description "nginx_repo"
     url ("http://nginx.org/packages/OS/OSRELEASE/$basearch/")
-    key "Zend"
+    key "nginx"
    action :add
   end
 end
