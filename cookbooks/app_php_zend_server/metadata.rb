@@ -67,6 +67,12 @@ attribute "app_php_zend_server/zend_server_node_ip",
    :description => "Zend Server IP accessible to other servers in the cluster",
    :required => "required",
    :recipes => ["app_php_zend_server::join_cluster"]
+attribute "app_php_zend_server/zend_server_mysql_db_name",
+   :display_name => "Zend server mysql DB name",
+   :description => "Zend Server mysql DB name. Change if you need 2 separate Zend Server clusters on the same MySQL instance.",
+   :required => "required",
+   :default => "ZendServer",
+   :recipes => ["app_php_zend_server::join_cluster"]
 attribute "app_php_zend_server/mysql_address",
    :display_name => "Zend server mysql address",
    :description => "Zend Server mysql DB host address accessible to this server",
