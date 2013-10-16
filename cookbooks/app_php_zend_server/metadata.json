@@ -1,0 +1,247 @@
+{
+  "name": "app_php_zend_server",
+  "description": "Installs the php application server Zend Server",
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "maintainer": "Zend Technologies",
+  "maintainer_email": "amir@zend.com",
+  "license": "Copyright Zend Technologies, Inc. All rights reserved.",
+  "platforms": {
+  },
+  "dependencies": {
+    "rightscale": ">= 0.0.0",
+    "app": ">= 0.0.0",
+    "repo": ">= 0.0.0",
+    "web_apache": ">= 0.0.0",
+    "apt": ">= 0.0.0",
+    "yum": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "app_php_zend_server": {
+      "display_name": "PHP Application Settings",
+      "type": "hash",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "app_php_zend_server/php_ver": {
+      "display_name": "php version",
+      "description": "php version to install, 5.3 or 5.4",
+      "required": "optional",
+      "choice": [
+        "5.3",
+        "5.4"
+      ],
+      "default": "5.4",
+      "recipes": [
+        "app_php_zend_server::default"
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/repo_base_url": {
+      "display_name": "zend repository base url",
+      "description": "zend repository base url is the repository url without the suffix /deb or /rpm",
+      "required": "optional",
+      "default": "http://repos.zend.com/zend-server/6.0",
+      "recipes": [
+        "app_php_zend_server::default"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/gui_password": {
+      "display_name": "zend gui password",
+      "description": "A string that will be used as the password to Zend Server gui",
+      "required": "required",
+      "recipes": [
+        "app_php_zend_server::install"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/api_key": {
+      "display_name": "zend api key hash",
+      "description": "64 chars string that will be used as the webapi key hash to access Zend Server through webapi",
+      "required": "required",
+      "recipes": [
+        "app_php_zend_server::install",
+        "app_php_zend_server::leave_cluster",
+        "app_php_zend_server::join_cluster"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/api_key_name": {
+      "display_name": "zend api key name",
+      "description": "web api key name",
+      "required": "optional",
+      "default": "rightscale",
+      "recipes": [
+        "app_php_zend_server::install",
+        "app_php_zend_server::leave_cluster",
+        "app_php_zend_server::join_cluster"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/order_number": {
+      "display_name": "Zend Server order number",
+      "description": "Zend Server order number should be supplied by Zend or Rightscale coupled with the license key",
+      "required": "required",
+      "recipes": [
+        "app_php_zend_server::install"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/zend_license_key": {
+      "display_name": "Zend server license key ",
+      "description": "Zend Server license key should be supplied by Zend or Rightscale coupled with the Zend Server order number",
+      "required": "required",
+      "recipes": [
+        "app_php_zend_server::install"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/zend_server_name": {
+      "display_name": "Zend server name",
+      "description": "Zend Server name to identify the server in the gui",
+      "required": "required",
+      "recipes": [
+        "app_php_zend_server::join_cluster"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/zend_server_node_ip": {
+      "display_name": "Zend server node IP",
+      "description": "Zend Server IP accessible to other servers in the cluster",
+      "required": "required",
+      "recipes": [
+        "app_php_zend_server::join_cluster"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/zend_server_mysql_db_name": {
+      "display_name": "Zend server mysql DB name",
+      "description": "Zend Server mysql DB name. Change if you need 2 separate Zend Server clusters on the same MySQL instance.",
+      "required": "optional",
+      "default": "ZendServer",
+      "recipes": [
+        "app_php_zend_server::join_cluster"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/mysql_address": {
+      "display_name": "Zend server mysql address",
+      "description": "Zend Server mysql DB host address accessible to this server",
+      "required": "required",
+      "recipes": [
+        "app_php_zend_server::join_cluster",
+        "app_php_zend_server::leave_cluster"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/mysql_user": {
+      "display_name": "Zend server mysql user name",
+      "description": "Zend Server mysql user name that can create the schema and access it",
+      "required": "required",
+      "recipes": [
+        "app_php_zend_server::join_cluster",
+        "app_php_zend_server::leave_cluster"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/zend_server_mysql_password": {
+      "display_name": "Zend server mysql password",
+      "description": "Zend Server mysql password",
+      "required": "required",
+      "recipes": [
+        "app_php_zend_server::join_cluster",
+        "app_php_zend_server::leave_cluster"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_php_zend_server/decommission_timeout": {
+      "display_name": "decommission timeout",
+      "description": "Decommission timeout of the server before booting. Change is needed to enable session clustering longer transfer time",
+      "required": "optional",
+      "default": "180",
+      "recipes": [
+        "app_php_zend_server::change_decommission_timeout"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "app_php_zend_server::default": "set parameters for ZS install and add installation repositories",
+    "app_php_zend_server::install": "Install Zend server and configure it as a standalone server",
+    "app_php_zend_server::join_cluster": "Join the local Zend Server to Cluster of Zend Servers by adding it directly into the MySQL schema",
+    "app_php_zend_server::leave_cluster": "remove the local server from Zend Server cluster",
+    "app_php_zend_server::change_decommission_timeout": "change the rightlink decomission timeout"
+  },
+  "version": "2.0.0"
+}
