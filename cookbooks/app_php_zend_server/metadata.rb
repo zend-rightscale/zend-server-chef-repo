@@ -3,7 +3,7 @@ maintainer_email "amir@zend.com"
 license          "Copyright Zend Technologies, Inc. All rights reserved."
 description      "Installs the php application server Zend Server"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "2.0.0"
+version          "6.2.0"
 depends "rightscale"
 depends "app"
 depends "repo"
