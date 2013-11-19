@@ -72,7 +72,7 @@ attribute "app_php_zend_server/zend_server_node_ip",
 attribute "app_php_zend_server/zend_server_mysql_db_name",
    :display_name => "Zend server mysql DB name",
    :description => "Zend Server mysql DB name. Change if you need 2 separate Zend Server clusters on the same MySQL instance.",
-   :required => "required",
+   :required => "optional",
    :default => "ZendServer",
    :recipes => ["app_php_zend_server::join_cluster"]
 attribute "app_php_zend_server/mysql_address",
