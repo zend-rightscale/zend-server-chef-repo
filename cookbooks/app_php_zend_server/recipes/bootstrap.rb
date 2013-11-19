@@ -15,7 +15,7 @@ bash "pre_bootstrap_zs" do
           sed "s|^zend_gui.extra\s*=.*|zend_gui.extra = \"cloud=rightscale\&templateVersion=6.2.0\"|" -i /usr/local/zend/gui/config/zs_ui.ini
       EOH
 end
-if node[:app_php_zend_server][:order_number].empty? or node[:app_php_zend_server][:zend_license_key].empty? then
+if node[:app_php_zend_server][:order_number].nil? or node[:app_php_zend_server][:zend_license_key].nil? then
     bootstrap =<<-EOH
     /usr/local/zend/bin/zs-manage bootstrap-single-server -p #{node[:app_php_zend_server][:gui_password]} -a TRUE   -r TRUE || { log "bootstrap failed"; exit 1 ; }
     EOH
