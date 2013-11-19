@@ -12,7 +12,7 @@ bash "pre_bootstrap_zs" do
           /usr/local/zend/bin/zendctl.sh restart 
           sleep 4
           /usr/local/zend/bin/zs-manage api-keys-add-key -n #{node[:app_php_zend_server][:api_key_name]} -s #{node[:app_php_zend_server][:api_key]} 
-          sed "s|^zend_gui.extra\s*=.*|zend_gui.extra = \"cloud=RightScale\&templateVersion=6.2.0\"|" -i /usr/local/zend/gui/config/zs_ui.ini
+          sed "s|^zend_gui.extra\s*=.*|zend_gui.extra = \"cloud=rightscale\&templateVersion=6.2.0\"|" -i /usr/local/zend/gui/config/zs_ui.ini
       EOH
 end
 if node[:app_php_zend_server][:order_number].empty or node[:app_php_zend_server][:zend_license_key].empty then
