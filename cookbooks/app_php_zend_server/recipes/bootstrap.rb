@@ -24,7 +24,7 @@ else
     /usr/local/zend/bin/zs-manage bootstrap-single-server -p #{node[:app_php_zend_server][:gui_password]} -o  #{node[:app_php_zend_server][:order_number]} -l  #{node[:app_php_zend_server][:zend_license_key]} -a TRUE   -r TRUE || { log "bootstrap failed"; exit 1 ; }
     EOH
 end
-log "bootstrap is #{bootstrap_zs}"
+log "bootstrap is #{bootstrap}"
 bash "bootstrap_zs" do
       user "root"
       cwd "/tmp"
