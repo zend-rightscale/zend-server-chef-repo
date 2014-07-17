@@ -11,22 +11,15 @@ bash "pre_bootstrap_zs" do
     code <<-EOH
           /usr/local/zend/bin/zendctl.sh restart 
           sleep 4
-          /usr/local/zend/bin/zs-manage api-keys-add-key -n #{node[:app_php_zend_server][:api_key_name]} -s #{node[:app_php_zend_server][:api_key]} 
+          /usr/local/zend/bin/zs-client.sh apiKeysAddKey --name=#{node[:app_php_zend_server][:api_key_name]} --username="admin" --hash #{node[:app_php_zend_server][:api_key]} 
       EOH
 end
-if node[:app_php_zend_server][:order_number].nil? or node[:app_php_zend_server][:zend_license_key].nil? then
-    bootstrap =<<-EOH
-    /usr/local/zend/bin/zs-manage bootstrap-single-server -p #{node[:app_php_zend_server][:gui_password]} -a TRUE   -r TRUE || { log "bootstrap failed"; exit 1 ; }
-    EOH
-else
-    bootstrap =<<-EOH
-    /usr/local/zend/bin/zs-manage bootstrap-single-server -p #{node[:app_php_zend_server][:gui_password]} -o  #{node[:app_php_zend_server][:order_number]} -l  #{node[:app_php_zend_server][:zend_license_key]} -a TRUE   -r TRUE || { log "bootstrap failed"; exit 1 ; }
-    EOH
-end
+bs_command = "/usr/local/zend/bin/zs-client.sh bootstrapSingleServer --adminPassword #{admin_password} --production=true --acceptEula"
+bs_command << "--orderNumber=#{node[:app_php_zend_server][:order_number]} --licenseKey=#{node[:app_php_zend_server][:zend_license_key]}" unless node[:app_php_zend_server][:order_number].nil? || node[:app_php_zend_server][:order_number].empty? || node[:app_php_zend_server][:zend_license_key].nil? || node[:app_php_zend_server][:zend_license_key].empty?
 bash "bootstrap_zs" do
       user "root"
       cwd "/tmp"
-      code bootstrap
+      code bs_command 
     end
 # Let others know we are an appserver
 # See http://support.rightscale.com/12-Guides/Chef_Cookbooks_Developer_Guide/Chef_Resources#RightLinkTag for the "right_link_tag" resource.
