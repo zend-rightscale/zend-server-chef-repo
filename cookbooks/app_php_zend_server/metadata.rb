@@ -3,7 +3,7 @@ maintainer_email "amir@zend.com"
 license          "Copyright Zend Technologies, Inc. All rights reserved."
 description      "Installs the php application server Zend Server"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "6.2.0"
+version          "7.1.0"
 depends "rightscale"
 depends "app"
 depends "repo"
@@ -24,8 +24,8 @@ attribute "app_php_zend_server/php_ver",
    :display_name => "php version",
    :description => "php version to install, 5.3 or 5.4",
    :required => "optional",
-   :choice => ["5.3", "5.4"],
-   :default => "5.4",
+   :choice => ["5.5", "5.6"],
+   :default => "5.5",
    :recipes => ["app_php_zend_server::install","app_php_zend_server::install_nginx"]   
 attribute "app_php_zend_server/repo_base_url",
    :display_name => "zend repository base url",
