@@ -13,7 +13,7 @@ code_to_run = <<-EOH
 #          /usr/local/zend/bin/zs-manage server-add-to-cluster -n #{node[:app_php_zend_server][:zend_server_name]} -i #{node[:app_php_zend_server][:zend_server_node_ip]}  -o #{node[:app_php_zend_server][:mysql_address]} -u #{node[:app_php_zend_server][:mysql_user]} -p #{node[:app_php_zend_server][:zend_server_mysql_password]} -d #{node[:app_php_zend_server][:zend_server_mysql_db_name]} -r 60 -w 5 -s -N #{node[:app_php_zend_server][:api_key_name]} -K #{node[:app_php_zend_server][:api_key]}
           /usr/local/zend/bin/zs-client.sh serverAddToCluster --zskey=#{node[:app_php_zend_server][:api_key_name]} --zssecret=#{node[:app_php_zend_server][:api_key]} --serverName=#{node[:app_php_zend_server][:zend_server_name]} --nodeIp=#{node[:app_php_zend_server][:zend_server_node_ip]} --dbHost=#{node[:app_php_zend_server][:mysql_address]} --dbUsername=#{node[:app_php_zend_server][:mysql_user]} --dbPassword=#{node[:app_php_zend_server][:zend_server_mysql_password]} --dbName=#{node[:app_php_zend_server][:zend_server_mysql_db_name]} --wait
           EOH
-#log "The code to run is: #{code_to_run}"
+log "The join cluster code is: #{code_to_run}"
 bash "join_zs_to_cluster" do
       user "root"
       cwd "/tmp"
