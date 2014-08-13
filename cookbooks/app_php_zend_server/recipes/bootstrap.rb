@@ -9,6 +9,7 @@ bash "pre_bootstrap_zs" do
     user "root"
     cwd "/tmp"
     code <<-EOH
+          sleep 120
           /usr/local/zend/bin/zendctl.sh restart 
           sleep 4
           /usr/local/zend/bin/zs-client.sh apiKeysAddKey --name=#{node[:app_php_zend_server][:api_key_name]} --username="admin" --hash #{node[:app_php_zend_server][:api_key]} 
