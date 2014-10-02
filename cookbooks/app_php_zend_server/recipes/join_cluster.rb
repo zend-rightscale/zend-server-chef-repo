@@ -6,6 +6,8 @@ rightscale_marker :begin
 
 log "join local Zend server to cluster"
 code_to_run = <<-EOH
+          zs_db_exist="`mysql -u"#{node[:app_php_zend_server][:mysql_user]}" -p"#{node[:app_php_zend_server][:zend_server_mysql_password]}" -h "#{node[:app_php_zend_server][:mysql_address]}" -qfsBe "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME=#{node[:app_php_zend_server][:zend_server_mysql_db_name]}" 2>&1`"
+          echo $zs_db_exist
           set +e
           n=0
           until [ $n -ge 13 ]
