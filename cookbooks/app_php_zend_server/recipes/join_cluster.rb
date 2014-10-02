@@ -13,6 +13,7 @@ code_to_run = <<-EOH
                     /usr/local/zend/bin/zs-client.sh configurationStoreDirectives --zskey=#{node[:app_php_zend_server][:api_key_name]} --zssecret=#{node[:app_php_zend_server][:api_key]} --directives="zend_sc.ha.use_broadcast=0&zend_debugger.allow_hosts=''"
                     /usr/local/zend/bin/zs-client.sh serverAddToCluster --zskey=#{node[:app_php_zend_server][:api_key_name]} --zssecret=#{node[:app_php_zend_server][:api_key]} --serverName=#{node[:app_php_zend_server][:zend_server_name]} --nodeIp=#{node[:app_php_zend_server][:zend_server_node_ip]} --dbHost=#{node[:app_php_zend_server][:mysql_address]} --dbUsername=#{node[:app_php_zend_server][:mysql_user]} --dbPassword=#{node[:app_php_zend_server][:zend_server_mysql_password]} --dbName=#{node[:app_php_zend_server][:zend_server_mysql_db_name]} --wait
                     [ $? -eq 0 ] && break
+                    echo "Bootstrap iteration $n failed"
                     n=$[$n+1]
                     sleep 3
           done
